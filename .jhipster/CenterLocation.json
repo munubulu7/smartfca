@@ -1,0 +1,26 @@
+{
+    "fluentMethods": true,
+    "relationships": [
+        {
+            "relationshipType": "one-to-many",
+            "relationshipName": "regInfos",
+            "otherEntityName": "registrationInformation",
+            "otherEntityRelationshipName": "centerLocation"
+        }
+    ],
+    "fields": [
+        {
+            "fieldName": "locationCode",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "drscription",
+            "fieldType": "String"
+        }
+    ],
+    "changelogDate": "20170913165025",
+    "entityTableName": "center_location",
+    "dto": "no",
+    "pagination": "no",
+    "service": "no"
+}

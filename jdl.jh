@@ -1,0 +1,147 @@
+entity RegistrationInformation{
+	applicationNumber String,
+    registrationDate ZonedDateTime,
+    accountNumber String,
+    mobileNumber String,
+    emailId String
+}
+entity BasicInformation{
+	dateOfBirth LocalDate,
+    noOfSon Integer,
+    noOfDaughter Integer,
+    yearOfEmployed LocalDate,
+    nameOfOrganisation String,
+    establishment LocalDate,
+    commencement LocalDate
+}
+entity AddressInformation{
+	landmark String
+}
+entity CenterLocation{
+	locationCode String,
+    drscription String
+}
+entity RegistrationType{
+	type String,
+    drscription String
+}
+entity Person{
+	fName String,
+    mName String,
+    lName String
+}
+entity Salutation{
+	name String
+}
+entity ResidentialStatus{
+	status String
+}
+entity MaritalStatus{
+	status String
+}
+entity Gender{
+	name String
+}
+entity Occupation{
+	occupation String,
+    description String
+}
+entity Employers{
+	name String,
+    description String
+}
+entity OrganisationType{
+	name String,
+    description String
+}
+entity Sector{
+	name String,
+    description String
+}
+entity Designation{
+	name String,
+    description String
+}
+entity ContactType{
+	type String,
+    description String
+}
+entity ContactInfo{
+	contactDetails String
+}
+entity ContactPerson{
+}
+entity AddressType{
+	type String
+}
+entity AddressFor{
+	name String
+}
+entity State{
+	name String
+}
+entity CityDistrictTown{
+	name String
+}
+entity AreaName{
+	name String
+}
+entity AreaType{
+	name String
+}
+entity PoliceStation{
+	name String
+}
+entity PostOffice{
+	name String
+}
+entity PremisesBuildingVillage{
+	name String
+}
+entity Pincode{
+	pincode String
+}
+
+relationship OneToMany{
+	CenterLocation{regInfos} to RegistrationInformation,
+    RegistrationType{regInfos} to RegistrationInformation,
+
+    Salutation{persons} to Person,
+    Occupation{employers} to Employers,
+    State{cityDistrictTowns} to CityDistrictTown,
+    AreaType{areaNames} to AreaName,
+    CityDistrictTown{areaNames} to AreaName,
+    AreaName{policeStations} to PoliceStation,
+    PoliceStation{postOffices} to PostOffice,
+    PostOffice{premisesBuildingVillage} to PremisesBuildingVillage,
+    PremisesBuildingVillage{pincodes} to Pincode,
+
+
+    RegistrationInformation{basicInfos} to BasicInformation,
+    ResidentialStatus{basicInfos} to BasicInformation,
+    MaritalStatus{basicInfos} to BasicInformation,
+    Gender{basicInfos} to BasicInformation,
+    Occupation{basicInfos} to BasicInformation,
+    Employers{basicInfos} to BasicInformation,
+    OrganisationType{basicInfos} to BasicInformation,
+    Sector{basicInfos} to BasicInformation,
+
+    ContactType{contactInfos} to ContactInfo,
+    ContactPerson{contactInfos} to ContactInfo,
+    RegistrationInformation{contactInfos} to ContactInfo,
+
+    BasicInformation{contactPersons} to ContactPerson,
+    Designation{contactPersons} to ContactPerson,
+
+    RegistrationInformation{addressInfos} to AddressInformation,
+    AddressType{addressInfos} to AddressInformation,
+    AddressFor{addressInfos} to AddressInformation,
+    Pincode{addressInfos} to AddressInformation
+}
+
+relationship OneToOne{
+	BasicInformation{name} to Person,
+    BasicInformation{father} to Person,
+    BasicInformation{mother} to Person,
+    ContactPerson{persons} to Person
+}

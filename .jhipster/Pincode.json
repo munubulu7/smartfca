@@ -1,0 +1,28 @@
+{
+    "fluentMethods": true,
+    "relationships": [
+        {
+            "relationshipName": "premisesBuildingVillage",
+            "otherEntityName": "premisesBuildingVillage",
+            "relationshipType": "many-to-one",
+            "otherEntityField": "id"
+        },
+        {
+            "relationshipType": "one-to-many",
+            "relationshipName": "addressInfos",
+            "otherEntityName": "addressInformation",
+            "otherEntityRelationshipName": "pincode"
+        }
+    ],
+    "fields": [
+        {
+            "fieldName": "pincode",
+            "fieldType": "String"
+        }
+    ],
+    "changelogDate": "20170913165049",
+    "entityTableName": "pincode",
+    "dto": "no",
+    "pagination": "no",
+    "service": "no"
+}

@@ -1,0 +1,115 @@
+
+<div *ngIf="basicInformation">
+    <h2><span>Basic Information</span> {{basicInformation.id}}</h2>
+    <hr>
+    <jhi-alert-error></jhi-alert-error>
+    <dl class="row-md jh-entity-details">
+        <dt><span>Date Of Birth</span></dt>
+        <dd>
+            <span>{{basicInformation.dateOfBirth | date:'mediumDate'}}</span>
+        </dd>
+        <dt><span>No Of Son</span></dt>
+        <dd>
+            <span>{{basicInformation.noOfSon}}</span>
+        </dd>
+        <dt><span>No Of Daughter</span></dt>
+        <dd>
+            <span>{{basicInformation.noOfDaughter}}</span>
+        </dd>
+        <dt><span>Year Of Employed</span></dt>
+        <dd>
+            <span>{{basicInformation.yearOfEmployed | date:'mediumDate'}}</span>
+        </dd>
+        <dt><span>Name Of Organisation</span></dt>
+        <dd>
+            <span>{{basicInformation.nameOfOrganisation}}</span>
+        </dd>
+        <dt><span>Establishment</span></dt>
+        <dd>
+            <span>{{basicInformation.establishment | date:'mediumDate'}}</span>
+        </dd>
+        <dt><span>Commencement</span></dt>
+        <dd>
+            <span>{{basicInformation.commencement | date:'mediumDate'}}</span>
+        </dd>
+        <dt><span>Registration Information</span></dt>
+        <dd>
+            <div *ngIf="basicInformation.registrationInformation">
+                <a [routerLink]="['/registration-information', basicInformation.registrationInformation?.id]">{{basicInformation.registrationInformation?.id}}</a>
+            </div>
+        </dd>
+        <dt><span>Name</span></dt>
+        <dd>
+            <div *ngIf="basicInformation.name">
+                <a [routerLink]="['/person', basicInformation.name?.id]">{{basicInformation.name?.id}}</a>
+            </div>
+        </dd>
+        <dt><span>Father</span></dt>
+        <dd>
+            <div *ngIf="basicInformation.father">
+                <a [routerLink]="['/person', basicInformation.father?.id]">{{basicInformation.father?.id}}</a>
+            </div>
+        </dd>
+        <dt><span>Mother</span></dt>
+        <dd>
+            <div *ngIf="basicInformation.mother">
+                <a [routerLink]="['/person', basicInformation.mother?.id]">{{basicInformation.mother?.id}}</a>
+            </div>
+        </dd>
+        <dt><span>Residential Status</span></dt>
+        <dd>
+            <div *ngIf="basicInformation.residentialStatus">
+                <a [routerLink]="['/residential-status', basicInformation.residentialStatus?.id]">{{basicInformation.residentialStatus?.id}}</a>
+            </div>
+        </dd>
+        <dt><span>Marital Status</span></dt>
+        <dd>
+            <div *ngIf="basicInformation.maritalStatus">
+                <a [routerLink]="['/marital-status', basicInformation.maritalStatus?.id]">{{basicInformation.maritalStatus?.id}}</a>
+            </div>
+        </dd>
+        <dt><span>Gender</span></dt>
+        <dd>
+            <div *ngIf="basicInformation.gender">
+                <a [routerLink]="['/gender', basicInformation.gender?.id]">{{basicInformation.gender?.id}}</a>
+            </div>
+        </dd>
+        <dt><span>Occupation</span></dt>
+        <dd>
+            <div *ngIf="basicInformation.occupation">
+                <a [routerLink]="['/occupation', basicInformation.occupation?.id]">{{basicInformation.occupation?.id}}</a>
+            </div>
+        </dd>
+        <dt><span>Employers</span></dt>
+        <dd>
+            <div *ngIf="basicInformation.employers">
+                <a [routerLink]="['/employers', basicInformation.employers?.id]">{{basicInformation.employers?.id}}</a>
+            </div>
+        </dd>
+        <dt><span>Organisation Type</span></dt>
+        <dd>
+            <div *ngIf="basicInformation.organisationType">
+                <a [routerLink]="['/organisation-type', basicInformation.organisationType?.id]">{{basicInformation.organisationType?.id}}</a>
+            </div>
+        </dd>
+        <dt><span>Sector</span></dt>
+        <dd>
+            <div *ngIf="basicInformation.sector">
+                <a [routerLink]="['/sector', basicInformation.sector?.id]">{{basicInformation.sector?.id}}</a>
+            </div>
+        </dd>
+    </dl>
+
+    <button type="submit"
+            (click)="previousState()"
+            class="btn btn-info">
+        <span class="fa fa-arrow-left"></span>&nbsp;<span> Back</span>
+    </button>
+
+    <button type="button"
+            [routerLink]="['/', { outlets: { popup: 'basic-information/'+ basicInformation.id + '/edit'} }]"
+            replaceUrl="true"
+            class="btn btn-primary">
+        <span class="fa fa-pencil"></span>&nbsp;<span> Edit</span>
+    </button>
+</div>

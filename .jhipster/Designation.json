@@ -1,0 +1,26 @@
+{
+    "fluentMethods": true,
+    "relationships": [
+        {
+            "relationshipType": "one-to-many",
+            "relationshipName": "contactPersons",
+            "otherEntityName": "contactPerson",
+            "otherEntityRelationshipName": "designation"
+        }
+    ],
+    "fields": [
+        {
+            "fieldName": "name",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "description",
+            "fieldType": "String"
+        }
+    ],
+    "changelogDate": "20170913165036",
+    "entityTableName": "designation",
+    "dto": "no",
+    "pagination": "no",
+    "service": "no"
+}

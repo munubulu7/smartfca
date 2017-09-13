@@ -1,0 +1,66 @@
+<form name="editForm" role="form" novalidate (ngSubmit)="save()" #editForm="ngForm">
+
+    <div class="modal-header">
+        <h4 class="modal-title" id="myRegistrationInformationLabel">Create or edit a Registration Information</h4>
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true"
+                (click)="clear()">&times;</button>
+    </div>
+    <div class="modal-body">
+        <jhi-alert-error></jhi-alert-error>
+        <div class="form-group" [hidden]="!registrationInformation.id">
+            <label for="id">ID</label>
+            <input type="text" class="form-control" id="id" name="id"
+                   [(ngModel)]="registrationInformation.id" readonly />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" for="field_applicationNumber">Application Number</label>
+            <input type="text" class="form-control" name="applicationNumber" id="field_applicationNumber"
+                [(ngModel)]="registrationInformation.applicationNumber"  />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" for="field_registrationDate">Registration Date</label>
+            <div class="d-flex">
+                <input id="field_registrationDate" type="datetime-local" class="form-control" name="registrationDate" [(ngModel)]="registrationInformation.registrationDate"
+                  />
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" for="field_accountNumber">Account Number</label>
+            <input type="text" class="form-control" name="accountNumber" id="field_accountNumber"
+                [(ngModel)]="registrationInformation.accountNumber"  />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" for="field_mobileNumber">Mobile Number</label>
+            <input type="text" class="form-control" name="mobileNumber" id="field_mobileNumber"
+                [(ngModel)]="registrationInformation.mobileNumber"  />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" for="field_emailId">Email Id</label>
+            <input type="text" class="form-control" name="emailId" id="field_emailId"
+                [(ngModel)]="registrationInformation.emailId"  />
+        </div>
+
+        <div class="form-group">
+            <label for="field_centerLocation">Center Location</label>
+            <select class="form-control" id="field_centerLocation" name="centerLocation" [(ngModel)]="registrationInformation.centerLocation" >
+                <option [ngValue]="null"></option>
+                <option [ngValue]="centerLocationOption.id === registrationInformation.centerLocation?.id ? registrationInformation.centerLocation : centerLocationOption" *ngFor="let centerLocationOption of centerlocations; trackBy: trackCenterLocationById">{{centerLocationOption.id}}</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label for="field_registrationType">Registration Type</label>
+            <select class="form-control" id="field_registrationType" name="registrationType" [(ngModel)]="registrationInformation.registrationType" >
+                <option [ngValue]="null"></option>
+                <option [ngValue]="registrationTypeOption.id === registrationInformation.registrationType?.id ? registrationInformation.registrationType : registrationTypeOption" *ngFor="let registrationTypeOption of registrationtypes; trackBy: trackRegistrationTypeById">{{registrationTypeOption.id}}</option>
+            </select>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal" (click)="clear()">
+            <span class="fa fa-ban"></span>&nbsp;<span>Cancel</span>
+        </button>
+        <button type="submit" [disabled]="editForm.form.invalid || isSaving" class="btn btn-primary">
+            <span class="fa fa-save"></span>&nbsp;<span>Save</span>
+        </button>
+    </div>
+</form>

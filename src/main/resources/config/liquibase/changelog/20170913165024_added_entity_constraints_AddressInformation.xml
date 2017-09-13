@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.5.xsd">
+    <!--
+        Added the constraints for entity AddressInformation.
+    -->
+    <changeSet id="20170913165024-2" author="jhipster">
+        
+        <addForeignKeyConstraint baseColumnNames="registration_information_id"
+                                 baseTableName="address_information"
+                                 constraintName="fk_address_information_registration_information_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="registration_information"/>
+
+        <addForeignKeyConstraint baseColumnNames="address_type_id"
+                                 baseTableName="address_information"
+                                 constraintName="fk_address_information_address_type_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="address_type"/>
+
+        <addForeignKeyConstraint baseColumnNames="address_for_id"
+                                 baseTableName="address_information"
+                                 constraintName="fk_address_information_address_for_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="address_for"/>
+
+        <addForeignKeyConstraint baseColumnNames="pincode_id"
+                                 baseTableName="address_information"
+                                 constraintName="fk_address_information_pincode_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="pincode"/>
+
+    </changeSet>
+</databaseChangeLog>

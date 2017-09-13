@@ -1,0 +1,26 @@
+{
+    "fluentMethods": true,
+    "relationships": [
+        {
+            "relationshipType": "one-to-many",
+            "relationshipName": "basicInfos",
+            "otherEntityName": "basicInformation",
+            "otherEntityRelationshipName": "sector"
+        }
+    ],
+    "fields": [
+        {
+            "fieldName": "name",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "description",
+            "fieldType": "String"
+        }
+    ],
+    "changelogDate": "20170913165035",
+    "entityTableName": "sector",
+    "dto": "no",
+    "pagination": "no",
+    "service": "no"
+}

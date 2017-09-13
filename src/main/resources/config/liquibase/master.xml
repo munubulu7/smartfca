@@ -5,6 +5,47 @@
     xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.5.xsd">
 
     <include file="classpath:config/liquibase/changelog/00000000000000_initial_schema.xml" relativeToChangelogFile="false"/>
+    <include file="classpath:config/liquibase/changelog/20170913165022_added_entity_RegistrationInformation.xml" relativeToChangelogFile="false"/>
+    <include file="classpath:config/liquibase/changelog/20170913165023_added_entity_BasicInformation.xml" relativeToChangelogFile="false"/>
+    <include file="classpath:config/liquibase/changelog/20170913165024_added_entity_AddressInformation.xml" relativeToChangelogFile="false"/>
+    <include file="classpath:config/liquibase/changelog/20170913165025_added_entity_CenterLocation.xml" relativeToChangelogFile="false"/>
+    <include file="classpath:config/liquibase/changelog/20170913165026_added_entity_RegistrationType.xml" relativeToChangelogFile="false"/>
+    <include file="classpath:config/liquibase/changelog/20170913165027_added_entity_Person.xml" relativeToChangelogFile="false"/>
+    <include file="classpath:config/liquibase/changelog/20170913165028_added_entity_Salutation.xml" relativeToChangelogFile="false"/>
+    <include file="classpath:config/liquibase/changelog/20170913165029_added_entity_ResidentialStatus.xml" relativeToChangelogFile="false"/>
+    <include file="classpath:config/liquibase/changelog/20170913165030_added_entity_MaritalStatus.xml" relativeToChangelogFile="false"/>
+    <include file="classpath:config/liquibase/changelog/20170913165031_added_entity_Gender.xml" relativeToChangelogFile="false"/>
+    <include file="classpath:config/liquibase/changelog/20170913165032_added_entity_Occupation.xml" relativeToChangelogFile="false"/>
+    <include file="classpath:config/liquibase/changelog/20170913165033_added_entity_Employers.xml" relativeToChangelogFile="false"/>
+    <include file="classpath:config/liquibase/changelog/20170913165034_added_entity_OrganisationType.xml" relativeToChangelogFile="false"/>
+    <include file="classpath:config/liquibase/changelog/20170913165035_added_entity_Sector.xml" relativeToChangelogFile="false"/>
+    <include file="classpath:config/liquibase/changelog/20170913165036_added_entity_Designation.xml" relativeToChangelogFile="false"/>
+    <include file="classpath:config/liquibase/changelog/20170913165037_added_entity_ContactType.xml" relativeToChangelogFile="false"/>
+    <include file="classpath:config/liquibase/changelog/20170913165038_added_entity_ContactInfo.xml" relativeToChangelogFile="false"/>
+    <include file="classpath:config/liquibase/changelog/20170913165039_added_entity_ContactPerson.xml" relativeToChangelogFile="false"/>
+    <include file="classpath:config/liquibase/changelog/20170913165040_added_entity_AddressType.xml" relativeToChangelogFile="false"/>
+    <include file="classpath:config/liquibase/changelog/20170913165041_added_entity_AddressFor.xml" relativeToChangelogFile="false"/>
+    <include file="classpath:config/liquibase/changelog/20170913165042_added_entity_State.xml" relativeToChangelogFile="false"/>
+    <include file="classpath:config/liquibase/changelog/20170913165043_added_entity_CityDistrictTown.xml" relativeToChangelogFile="false"/>
+    <include file="classpath:config/liquibase/changelog/20170913165044_added_entity_AreaName.xml" relativeToChangelogFile="false"/>
+    <include file="classpath:config/liquibase/changelog/20170913165045_added_entity_AreaType.xml" relativeToChangelogFile="false"/>
+    <include file="classpath:config/liquibase/changelog/20170913165046_added_entity_PoliceStation.xml" relativeToChangelogFile="false"/>
+    <include file="classpath:config/liquibase/changelog/20170913165047_added_entity_PostOffice.xml" relativeToChangelogFile="false"/>
+    <include file="classpath:config/liquibase/changelog/20170913165048_added_entity_PremisesBuildingVillage.xml" relativeToChangelogFile="false"/>
+    <include file="classpath:config/liquibase/changelog/20170913165049_added_entity_Pincode.xml" relativeToChangelogFile="false"/>
     <!-- jhipster-needle-liquibase-add-changelog - JHipster will add liquibase changelogs here -->
+    <include file="classpath:config/liquibase/changelog/20170913165022_added_entity_constraints_RegistrationInformation.xml" relativeToChangelogFile="false"/>
+    <include file="classpath:config/liquibase/changelog/20170913165023_added_entity_constraints_BasicInformation.xml" relativeToChangelogFile="false"/>
+    <include file="classpath:config/liquibase/changelog/20170913165024_added_entity_constraints_AddressInformation.xml" relativeToChangelogFile="false"/>
+    <include file="classpath:config/liquibase/changelog/20170913165027_added_entity_constraints_Person.xml" relativeToChangelogFile="false"/>
+    <include file="classpath:config/liquibase/changelog/20170913165033_added_entity_constraints_Employers.xml" relativeToChangelogFile="false"/>
+    <include file="classpath:config/liquibase/changelog/20170913165038_added_entity_constraints_ContactInfo.xml" relativeToChangelogFile="false"/>
+    <include file="classpath:config/liquibase/changelog/20170913165039_added_entity_constraints_ContactPerson.xml" relativeToChangelogFile="false"/>
+    <include file="classpath:config/liquibase/changelog/20170913165043_added_entity_constraints_CityDistrictTown.xml" relativeToChangelogFile="false"/>
+    <include file="classpath:config/liquibase/changelog/20170913165044_added_entity_constraints_AreaName.xml" relativeToChangelogFile="false"/>
+    <include file="classpath:config/liquibase/changelog/20170913165046_added_entity_constraints_PoliceStation.xml" relativeToChangelogFile="false"/>
+    <include file="classpath:config/liquibase/changelog/20170913165047_added_entity_constraints_PostOffice.xml" relativeToChangelogFile="false"/>
+    <include file="classpath:config/liquibase/changelog/20170913165048_added_entity_constraints_PremisesBuildingVillage.xml" relativeToChangelogFile="false"/>
+    <include file="classpath:config/liquibase/changelog/20170913165049_added_entity_constraints_Pincode.xml" relativeToChangelogFile="false"/>
     <!-- jhipster-needle-liquibase-add-constraints-changelog - JHipster will add liquibase constraints changelogs here -->
 </databaseChangeLog>

@@ -1,0 +1,157 @@
+<form name="editForm" role="form" novalidate (ngSubmit)="save()" #editForm="ngForm">
+
+    <div class="modal-header">
+        <h4 class="modal-title" id="myBasicInformationLabel">Create or edit a Basic Information</h4>
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true"
+                (click)="clear()">&times;</button>
+    </div>
+    <div class="modal-body">
+        <jhi-alert-error></jhi-alert-error>
+        <div class="form-group" [hidden]="!basicInformation.id">
+            <label for="id">ID</label>
+            <input type="text" class="form-control" id="id" name="id"
+                   [(ngModel)]="basicInformation.id" readonly />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" for="field_dateOfBirth">Date Of Birth</label>
+            <div class="input-group">
+                <input id="field_dateOfBirth" type="text" class="form-control" name="dateOfBirth" ngbDatepicker  #dateOfBirthDp="ngbDatepicker" [(ngModel)]="basicInformation.dateOfBirth"
+                />
+                <span class="input-group-btn">
+                    <button type="button" class="btn btn-default" (click)="dateOfBirthDp.toggle()"><i class="fa fa-calendar"></i></button>
+                </span>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" for="field_noOfSon">No Of Son</label>
+            <input type="number" class="form-control" name="noOfSon" id="field_noOfSon"
+                [(ngModel)]="basicInformation.noOfSon"  />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" for="field_noOfDaughter">No Of Daughter</label>
+            <input type="number" class="form-control" name="noOfDaughter" id="field_noOfDaughter"
+                [(ngModel)]="basicInformation.noOfDaughter"  />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" for="field_yearOfEmployed">Year Of Employed</label>
+            <div class="input-group">
+                <input id="field_yearOfEmployed" type="text" class="form-control" name="yearOfEmployed" ngbDatepicker  #yearOfEmployedDp="ngbDatepicker" [(ngModel)]="basicInformation.yearOfEmployed"
+                />
+                <span class="input-group-btn">
+                    <button type="button" class="btn btn-default" (click)="yearOfEmployedDp.toggle()"><i class="fa fa-calendar"></i></button>
+                </span>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" for="field_nameOfOrganisation">Name Of Organisation</label>
+            <input type="text" class="form-control" name="nameOfOrganisation" id="field_nameOfOrganisation"
+                [(ngModel)]="basicInformation.nameOfOrganisation"  />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" for="field_establishment">Establishment</label>
+            <div class="input-group">
+                <input id="field_establishment" type="text" class="form-control" name="establishment" ngbDatepicker  #establishmentDp="ngbDatepicker" [(ngModel)]="basicInformation.establishment"
+                />
+                <span class="input-group-btn">
+                    <button type="button" class="btn btn-default" (click)="establishmentDp.toggle()"><i class="fa fa-calendar"></i></button>
+                </span>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" for="field_commencement">Commencement</label>
+            <div class="input-group">
+                <input id="field_commencement" type="text" class="form-control" name="commencement" ngbDatepicker  #commencementDp="ngbDatepicker" [(ngModel)]="basicInformation.commencement"
+                />
+                <span class="input-group-btn">
+                    <button type="button" class="btn btn-default" (click)="commencementDp.toggle()"><i class="fa fa-calendar"></i></button>
+                </span>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label for="field_registrationInformation">Registration Information</label>
+            <select class="form-control" id="field_registrationInformation" name="registrationInformation" [(ngModel)]="basicInformation.registrationInformation" >
+                <option [ngValue]="null"></option>
+                <option [ngValue]="registrationInformationOption.id === basicInformation.registrationInformation?.id ? basicInformation.registrationInformation : registrationInformationOption" *ngFor="let registrationInformationOption of registrationinformations; trackBy: trackRegistrationInformationById">{{registrationInformationOption.id}}</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label for="field_name">Name</label>
+            <select class="form-control" id="field_name" name="name" [(ngModel)]="basicInformation.name">
+                <option [ngValue]="null"></option>
+                <option [ngValue]="personOption.id === basicInformation.name?.id ? basicInformation.name : personOption" *ngFor="let personOption of names; trackBy: trackPersonById">{{personOption.id}}</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label for="field_father">Father</label>
+            <select class="form-control" id="field_father" name="father" [(ngModel)]="basicInformation.father">
+                <option [ngValue]="null"></option>
+                <option [ngValue]="personOption.id === basicInformation.father?.id ? basicInformation.father : personOption" *ngFor="let personOption of fathers; trackBy: trackPersonById">{{personOption.id}}</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label for="field_mother">Mother</label>
+            <select class="form-control" id="field_mother" name="mother" [(ngModel)]="basicInformation.mother">
+                <option [ngValue]="null"></option>
+                <option [ngValue]="personOption.id === basicInformation.mother?.id ? basicInformation.mother : personOption" *ngFor="let personOption of mothers; trackBy: trackPersonById">{{personOption.id}}</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label for="field_residentialStatus">Residential Status</label>
+            <select class="form-control" id="field_residentialStatus" name="residentialStatus" [(ngModel)]="basicInformation.residentialStatus" >
+                <option [ngValue]="null"></option>
+                <option [ngValue]="residentialStatusOption.id === basicInformation.residentialStatus?.id ? basicInformation.residentialStatus : residentialStatusOption" *ngFor="let residentialStatusOption of residentialstatuses; trackBy: trackResidentialStatusById">{{residentialStatusOption.id}}</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label for="field_maritalStatus">Marital Status</label>
+            <select class="form-control" id="field_maritalStatus" name="maritalStatus" [(ngModel)]="basicInformation.maritalStatus" >
+                <option [ngValue]="null"></option>
+                <option [ngValue]="maritalStatusOption.id === basicInformation.maritalStatus?.id ? basicInformation.maritalStatus : maritalStatusOption" *ngFor="let maritalStatusOption of maritalstatuses; trackBy: trackMaritalStatusById">{{maritalStatusOption.id}}</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label for="field_gender">Gender</label>
+            <select class="form-control" id="field_gender" name="gender" [(ngModel)]="basicInformation.gender" >
+                <option [ngValue]="null"></option>
+                <option [ngValue]="genderOption.id === basicInformation.gender?.id ? basicInformation.gender : genderOption" *ngFor="let genderOption of genders; trackBy: trackGenderById">{{genderOption.id}}</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label for="field_occupation">Occupation</label>
+            <select class="form-control" id="field_occupation" name="occupation" [(ngModel)]="basicInformation.occupation" >
+                <option [ngValue]="null"></option>
+                <option [ngValue]="occupationOption.id === basicInformation.occupation?.id ? basicInformation.occupation : occupationOption" *ngFor="let occupationOption of occupations; trackBy: trackOccupationById">{{occupationOption.id}}</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label for="field_employers">Employers</label>
+            <select class="form-control" id="field_employers" name="employers" [(ngModel)]="basicInformation.employers" >
+                <option [ngValue]="null"></option>
+                <option [ngValue]="employersOption.id === basicInformation.employers?.id ? basicInformation.employers : employersOption" *ngFor="let employersOption of employers; trackBy: trackEmployersById">{{employersOption.id}}</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label for="field_organisationType">Organisation Type</label>
+            <select class="form-control" id="field_organisationType" name="organisationType" [(ngModel)]="basicInformation.organisationType" >
+                <option [ngValue]="null"></option>
+                <option [ngValue]="organisationTypeOption.id === basicInformation.organisationType?.id ? basicInformation.organisationType : organisationTypeOption" *ngFor="let organisationTypeOption of organisationtypes; trackBy: trackOrganisationTypeById">{{organisationTypeOption.id}}</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label for="field_sector">Sector</label>
+            <select class="form-control" id="field_sector" name="sector" [(ngModel)]="basicInformation.sector" >
+                <option [ngValue]="null"></option>
+                <option [ngValue]="sectorOption.id === basicInformation.sector?.id ? basicInformation.sector : sectorOption" *ngFor="let sectorOption of sectors; trackBy: trackSectorById">{{sectorOption.id}}</option>
+            </select>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal" (click)="clear()">
+            <span class="fa fa-ban"></span>&nbsp;<span>Cancel</span>
+        </button>
+        <button type="submit" [disabled]="editForm.form.invalid || isSaving" class="btn btn-primary">
+            <span class="fa fa-save"></span>&nbsp;<span>Save</span>
+        </button>
+    </div>
+</form>

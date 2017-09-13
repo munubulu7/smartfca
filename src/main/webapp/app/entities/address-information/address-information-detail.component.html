@@ -1,0 +1,49 @@
+
+<div *ngIf="addressInformation">
+    <h2><span>Address Information</span> {{addressInformation.id}}</h2>
+    <hr>
+    <jhi-alert-error></jhi-alert-error>
+    <dl class="row-md jh-entity-details">
+        <dt><span>Landmark</span></dt>
+        <dd>
+            <span>{{addressInformation.landmark}}</span>
+        </dd>
+        <dt><span>Registration Information</span></dt>
+        <dd>
+            <div *ngIf="addressInformation.registrationInformation">
+                <a [routerLink]="['/registration-information', addressInformation.registrationInformation?.id]">{{addressInformation.registrationInformation?.id}}</a>
+            </div>
+        </dd>
+        <dt><span>Address Type</span></dt>
+        <dd>
+            <div *ngIf="addressInformation.addressType">
+                <a [routerLink]="['/address-type', addressInformation.addressType?.id]">{{addressInformation.addressType?.id}}</a>
+            </div>
+        </dd>
+        <dt><span>Address For</span></dt>
+        <dd>
+            <div *ngIf="addressInformation.addressFor">
+                <a [routerLink]="['/address-for', addressInformation.addressFor?.id]">{{addressInformation.addressFor?.id}}</a>
+            </div>
+        </dd>
+        <dt><span>Pincode</span></dt>
+        <dd>
+            <div *ngIf="addressInformation.pincode">
+                <a [routerLink]="['/pincode', addressInformation.pincode?.id]">{{addressInformation.pincode?.id}}</a>
+            </div>
+        </dd>
+    </dl>
+
+    <button type="submit"
+            (click)="previousState()"
+            class="btn btn-info">
+        <span class="fa fa-arrow-left"></span>&nbsp;<span> Back</span>
+    </button>
+
+    <button type="button"
+            [routerLink]="['/', { outlets: { popup: 'address-information/'+ addressInformation.id + '/edit'} }]"
+            replaceUrl="true"
+            class="btn btn-primary">
+        <span class="fa fa-pencil"></span>&nbsp;<span> Edit</span>
+    </button>
+</div>

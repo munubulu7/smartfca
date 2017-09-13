@@ -1,0 +1,37 @@
+{
+    "fluentMethods": true,
+    "relationships": [
+        {
+            "relationshipName": "basicInformation",
+            "otherEntityName": "basicInformation",
+            "relationshipType": "many-to-one",
+            "otherEntityField": "id"
+        },
+        {
+            "relationshipName": "designation",
+            "otherEntityName": "designation",
+            "relationshipType": "many-to-one",
+            "otherEntityField": "id"
+        },
+        {
+            "relationshipType": "one-to-one",
+            "relationshipName": "persons",
+            "otherEntityName": "person",
+            "otherEntityField": "id",
+            "ownerSide": true,
+            "otherEntityRelationshipName": "contactPerson"
+        },
+        {
+            "relationshipType": "one-to-many",
+            "relationshipName": "contactInfos",
+            "otherEntityName": "contactInfo",
+            "otherEntityRelationshipName": "contactPerson"
+        }
+    ],
+    "fields": [],
+    "changelogDate": "20170913165039",
+    "entityTableName": "contact_person",
+    "dto": "no",
+    "pagination": "no",
+    "service": "no"
+}

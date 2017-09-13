@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.5.xsd
+                        http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd">
+
+    <property name="now" value="now()" dbms="h2"/>
+
+    <property name="now" value="now()" dbms="mysql"/>
+    <property name="autoIncrement" value="true"/>
+
+    <property name="floatType" value="float4" dbms="postgresql, h2"/>
+    <property name="floatType" value="float" dbms="mysql, oracle, mssql"/>
+
+    <!--
+        Added the entity BasicInformation.
+    -->
+    <changeSet id="20170913165023-1" author="jhipster">
+        <createTable tableName="basic_information">
+            <column name="id" type="bigint" autoIncrement="${autoIncrement}">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="date_of_birth" type="date">
+                <constraints nullable="true" />
+            </column>
+
+            <column name="no_of_son" type="integer">
+                <constraints nullable="true" />
+            </column>
+
+            <column name="no_of_daughter" type="integer">
+                <constraints nullable="true" />
+            </column>
+
+            <column name="year_of_employed" type="date">
+                <constraints nullable="true" />
+            </column>
+
+            <column name="name_of_organisation" type="varchar(255)">
+                <constraints nullable="true" />
+            </column>
+
+            <column name="establishment" type="date">
+                <constraints nullable="true" />
+            </column>
+
+            <column name="commencement" type="date">
+                <constraints nullable="true" />
+            </column>
+
+            <column name="registration_information_id" type="bigint">
+                <constraints nullable="true" />
+            </column>
+            <column name="name_id" type="bigint">
+                <constraints unique="true" nullable="true" />
+            </column>            <column name="father_id" type="bigint">
+                <constraints unique="true" nullable="true" />
+            </column>            <column name="mother_id" type="bigint">
+                <constraints unique="true" nullable="true" />
+            </column>
+            <column name="residential_status_id" type="bigint">
+                <constraints nullable="true" />
+            </column>
+
+            <column name="marital_status_id" type="bigint">
+                <constraints nullable="true" />
+            </column>
+
+            <column name="gender_id" type="bigint">
+                <constraints nullable="true" />
+            </column>
+
+            <column name="occupation_id" type="bigint">
+                <constraints nullable="true" />
+            </column>
+
+            <column name="employers_id" type="bigint">
+                <constraints nullable="true" />
+            </column>
+
+            <column name="organisation_type_id" type="bigint">
+                <constraints nullable="true" />
+            </column>
+
+            <column name="sector_id" type="bigint">
+                <constraints nullable="true" />
+            </column>
+
+            <!-- jhipster-needle-liquibase-add-column - JHipster will add columns here, do not remove-->
+        </createTable>
+        
+    </changeSet>
+</databaseChangeLog>

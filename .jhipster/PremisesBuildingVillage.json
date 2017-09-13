@@ -1,0 +1,28 @@
+{
+    "fluentMethods": true,
+    "relationships": [
+        {
+            "relationshipName": "postOffice",
+            "otherEntityName": "postOffice",
+            "relationshipType": "many-to-one",
+            "otherEntityField": "id"
+        },
+        {
+            "relationshipType": "one-to-many",
+            "relationshipName": "pincodes",
+            "otherEntityName": "pincode",
+            "otherEntityRelationshipName": "premisesBuildingVillage"
+        }
+    ],
+    "fields": [
+        {
+            "fieldName": "name",
+            "fieldType": "String"
+        }
+    ],
+    "changelogDate": "20170913165048",
+    "entityTableName": "premises_building_village",
+    "dto": "no",
+    "pagination": "no",
+    "service": "no"
+}

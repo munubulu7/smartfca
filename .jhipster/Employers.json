@@ -1,0 +1,32 @@
+{
+    "fluentMethods": true,
+    "relationships": [
+        {
+            "relationshipName": "occupation",
+            "otherEntityName": "occupation",
+            "relationshipType": "many-to-one",
+            "otherEntityField": "id"
+        },
+        {
+            "relationshipType": "one-to-many",
+            "relationshipName": "basicInfos",
+            "otherEntityName": "basicInformation",
+            "otherEntityRelationshipName": "employers"
+        }
+    ],
+    "fields": [
+        {
+            "fieldName": "name",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "description",
+            "fieldType": "String"
+        }
+    ],
+    "changelogDate": "20170913165033",
+    "entityTableName": "employers",
+    "dto": "no",
+    "pagination": "no",
+    "service": "no"
+}

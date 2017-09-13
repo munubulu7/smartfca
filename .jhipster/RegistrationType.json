@@ -1,0 +1,26 @@
+{
+    "fluentMethods": true,
+    "relationships": [
+        {
+            "relationshipType": "one-to-many",
+            "relationshipName": "regInfos",
+            "otherEntityName": "registrationInformation",
+            "otherEntityRelationshipName": "registrationType"
+        }
+    ],
+    "fields": [
+        {
+            "fieldName": "type",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "drscription",
+            "fieldType": "String"
+        }
+    ],
+    "changelogDate": "20170913165026",
+    "entityTableName": "registration_type",
+    "dto": "no",
+    "pagination": "no",
+    "service": "no"
+}

@@ -1,0 +1,22 @@
+{
+    "fluentMethods": true,
+    "relationships": [
+        {
+            "relationshipType": "one-to-many",
+            "relationshipName": "areaNames",
+            "otherEntityName": "areaName",
+            "otherEntityRelationshipName": "areaType"
+        }
+    ],
+    "fields": [
+        {
+            "fieldName": "name",
+            "fieldType": "String"
+        }
+    ],
+    "changelogDate": "20170913165045",
+    "entityTableName": "area_type",
+    "dto": "no",
+    "pagination": "no",
+    "service": "no"
+}

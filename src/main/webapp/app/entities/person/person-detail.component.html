@@ -1,0 +1,39 @@
+
+<div *ngIf="person">
+    <h2><span>Person</span> {{person.id}}</h2>
+    <hr>
+    <jhi-alert-error></jhi-alert-error>
+    <dl class="row-md jh-entity-details">
+        <dt><span>F Name</span></dt>
+        <dd>
+            <span>{{person.fName}}</span>
+        </dd>
+        <dt><span>M Name</span></dt>
+        <dd>
+            <span>{{person.mName}}</span>
+        </dd>
+        <dt><span>L Name</span></dt>
+        <dd>
+            <span>{{person.lName}}</span>
+        </dd>
+        <dt><span>Salutation</span></dt>
+        <dd>
+            <div *ngIf="person.salutation">
+                <a [routerLink]="['/salutation', person.salutation?.id]">{{person.salutation?.id}}</a>
+            </div>
+        </dd>
+    </dl>
+
+    <button type="submit"
+            (click)="previousState()"
+            class="btn btn-info">
+        <span class="fa fa-arrow-left"></span>&nbsp;<span> Back</span>
+    </button>
+
+    <button type="button"
+            [routerLink]="['/', { outlets: { popup: 'person/'+ person.id + '/edit'} }]"
+            replaceUrl="true"
+            class="btn btn-primary">
+        <span class="fa fa-pencil"></span>&nbsp;<span> Edit</span>
+    </button>
+</div>

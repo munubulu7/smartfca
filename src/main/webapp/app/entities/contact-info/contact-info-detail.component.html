@@ -1,0 +1,43 @@
+
+<div *ngIf="contactInfo">
+    <h2><span>Contact Info</span> {{contactInfo.id}}</h2>
+    <hr>
+    <jhi-alert-error></jhi-alert-error>
+    <dl class="row-md jh-entity-details">
+        <dt><span>Contact Details</span></dt>
+        <dd>
+            <span>{{contactInfo.contactDetails}}</span>
+        </dd>
+        <dt><span>Registration Information</span></dt>
+        <dd>
+            <div *ngIf="contactInfo.registrationInformation">
+                <a [routerLink]="['/registration-information', contactInfo.registrationInformation?.id]">{{contactInfo.registrationInformation?.id}}</a>
+            </div>
+        </dd>
+        <dt><span>Contact Type</span></dt>
+        <dd>
+            <div *ngIf="contactInfo.contactType">
+                <a [routerLink]="['/contact-type', contactInfo.contactType?.id]">{{contactInfo.contactType?.id}}</a>
+            </div>
+        </dd>
+        <dt><span>Contact Person</span></dt>
+        <dd>
+            <div *ngIf="contactInfo.contactPerson">
+                <a [routerLink]="['/contact-person', contactInfo.contactPerson?.id]">{{contactInfo.contactPerson?.id}}</a>
+            </div>
+        </dd>
+    </dl>
+
+    <button type="submit"
+            (click)="previousState()"
+            class="btn btn-info">
+        <span class="fa fa-arrow-left"></span>&nbsp;<span> Back</span>
+    </button>
+
+    <button type="button"
+            [routerLink]="['/', { outlets: { popup: 'contact-info/'+ contactInfo.id + '/edit'} }]"
+            replaceUrl="true"
+            class="btn btn-primary">
+        <span class="fa fa-pencil"></span>&nbsp;<span> Edit</span>
+    </button>
+</div>

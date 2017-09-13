@@ -1,0 +1,51 @@
+<form name="editForm" role="form" novalidate (ngSubmit)="save()" #editForm="ngForm">
+
+    <div class="modal-header">
+        <h4 class="modal-title" id="myContactInfoLabel">Create or edit a Contact Info</h4>
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true"
+                (click)="clear()">&times;</button>
+    </div>
+    <div class="modal-body">
+        <jhi-alert-error></jhi-alert-error>
+        <div class="form-group" [hidden]="!contactInfo.id">
+            <label for="id">ID</label>
+            <input type="text" class="form-control" id="id" name="id"
+                   [(ngModel)]="contactInfo.id" readonly />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" for="field_contactDetails">Contact Details</label>
+            <input type="text" class="form-control" name="contactDetails" id="field_contactDetails"
+                [(ngModel)]="contactInfo.contactDetails"  />
+        </div>
+
+        <div class="form-group">
+            <label for="field_registrationInformation">Registration Information</label>
+            <select class="form-control" id="field_registrationInformation" name="registrationInformation" [(ngModel)]="contactInfo.registrationInformation" >
+                <option [ngValue]="null"></option>
+                <option [ngValue]="registrationInformationOption.id === contactInfo.registrationInformation?.id ? contactInfo.registrationInformation : registrationInformationOption" *ngFor="let registrationInformationOption of registrationinformations; trackBy: trackRegistrationInformationById">{{registrationInformationOption.id}}</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label for="field_contactType">Contact Type</label>
+            <select class="form-control" id="field_contactType" name="contactType" [(ngModel)]="contactInfo.contactType" >
+                <option [ngValue]="null"></option>
+                <option [ngValue]="contactTypeOption.id === contactInfo.contactType?.id ? contactInfo.contactType : contactTypeOption" *ngFor="let contactTypeOption of contacttypes; trackBy: trackContactTypeById">{{contactTypeOption.id}}</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label for="field_contactPerson">Contact Person</label>
+            <select class="form-control" id="field_contactPerson" name="contactPerson" [(ngModel)]="contactInfo.contactPerson" >
+                <option [ngValue]="null"></option>
+                <option [ngValue]="contactPersonOption.id === contactInfo.contactPerson?.id ? contactInfo.contactPerson : contactPersonOption" *ngFor="let contactPersonOption of contactpeople; trackBy: trackContactPersonById">{{contactPersonOption.id}}</option>
+            </select>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal" (click)="clear()">
+            <span class="fa fa-ban"></span>&nbsp;<span>Cancel</span>
+        </button>
+        <button type="submit" [disabled]="editForm.form.invalid || isSaving" class="btn btn-primary">
+            <span class="fa fa-save"></span>&nbsp;<span>Save</span>
+        </button>
+    </div>
+</form>

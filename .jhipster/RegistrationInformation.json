@@ -1,0 +1,62 @@
+{
+    "fluentMethods": true,
+    "relationships": [
+        {
+            "relationshipType": "one-to-many",
+            "relationshipName": "basicInfos",
+            "otherEntityName": "basicInformation",
+            "otherEntityRelationshipName": "registrationInformation"
+        },
+        {
+            "relationshipType": "one-to-many",
+            "relationshipName": "contactInfos",
+            "otherEntityName": "contactInfo",
+            "otherEntityRelationshipName": "registrationInformation"
+        },
+        {
+            "relationshipType": "one-to-many",
+            "relationshipName": "addressInfos",
+            "otherEntityName": "addressInformation",
+            "otherEntityRelationshipName": "registrationInformation"
+        },
+        {
+            "relationshipName": "centerLocation",
+            "otherEntityName": "centerLocation",
+            "relationshipType": "many-to-one",
+            "otherEntityField": "id"
+        },
+        {
+            "relationshipName": "registrationType",
+            "otherEntityName": "registrationType",
+            "relationshipType": "many-to-one",
+            "otherEntityField": "id"
+        }
+    ],
+    "fields": [
+        {
+            "fieldName": "applicationNumber",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "registrationDate",
+            "fieldType": "ZonedDateTime"
+        },
+        {
+            "fieldName": "accountNumber",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "mobileNumber",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "emailId",
+            "fieldType": "String"
+        }
+    ],
+    "changelogDate": "20170913165022",
+    "entityTableName": "registration_information",
+    "dto": "no",
+    "pagination": "no",
+    "service": "no"
+}

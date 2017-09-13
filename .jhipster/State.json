@@ -1,0 +1,22 @@
+{
+    "fluentMethods": true,
+    "relationships": [
+        {
+            "relationshipType": "one-to-many",
+            "relationshipName": "cityDistrictTowns",
+            "otherEntityName": "cityDistrictTown",
+            "otherEntityRelationshipName": "state"
+        }
+    ],
+    "fields": [
+        {
+            "fieldName": "name",
+            "fieldType": "String"
+        }
+    ],
+    "changelogDate": "20170913165042",
+    "entityTableName": "state",
+    "dto": "no",
+    "pagination": "no",
+    "service": "no"
+}

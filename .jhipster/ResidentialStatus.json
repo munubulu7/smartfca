@@ -1,0 +1,22 @@
+{
+    "fluentMethods": true,
+    "relationships": [
+        {
+            "relationshipType": "one-to-many",
+            "relationshipName": "basicInfos",
+            "otherEntityName": "basicInformation",
+            "otherEntityRelationshipName": "residentialStatus"
+        }
+    ],
+    "fields": [
+        {
+            "fieldName": "status",
+            "fieldType": "String"
+        }
+    ],
+    "changelogDate": "20170913165029",
+    "entityTableName": "residential_status",
+    "dto": "no",
+    "pagination": "no",
+    "service": "no"
+}

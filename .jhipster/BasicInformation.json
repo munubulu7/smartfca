@@ -1,0 +1,118 @@
+{
+    "fluentMethods": true,
+    "relationships": [
+        {
+            "relationshipName": "registrationInformation",
+            "otherEntityName": "registrationInformation",
+            "relationshipType": "many-to-one",
+            "otherEntityField": "id"
+        },
+        {
+            "relationshipType": "one-to-one",
+            "relationshipName": "name",
+            "otherEntityName": "person",
+            "otherEntityField": "id",
+            "ownerSide": true,
+            "otherEntityRelationshipName": "basicInformation"
+        },
+        {
+            "relationshipType": "one-to-one",
+            "relationshipName": "father",
+            "otherEntityName": "person",
+            "otherEntityField": "id",
+            "ownerSide": true,
+            "otherEntityRelationshipName": "basicInformation"
+        },
+        {
+            "relationshipType": "one-to-one",
+            "relationshipName": "mother",
+            "otherEntityName": "person",
+            "otherEntityField": "id",
+            "ownerSide": true,
+            "otherEntityRelationshipName": "basicInformation"
+        },
+        {
+            "relationshipType": "one-to-many",
+            "relationshipName": "contactPersons",
+            "otherEntityName": "contactPerson",
+            "otherEntityRelationshipName": "basicInformation"
+        },
+        {
+            "relationshipName": "residentialStatus",
+            "otherEntityName": "residentialStatus",
+            "relationshipType": "many-to-one",
+            "otherEntityField": "id"
+        },
+        {
+            "relationshipName": "maritalStatus",
+            "otherEntityName": "maritalStatus",
+            "relationshipType": "many-to-one",
+            "otherEntityField": "id"
+        },
+        {
+            "relationshipName": "gender",
+            "otherEntityName": "gender",
+            "relationshipType": "many-to-one",
+            "otherEntityField": "id"
+        },
+        {
+            "relationshipName": "occupation",
+            "otherEntityName": "occupation",
+            "relationshipType": "many-to-one",
+            "otherEntityField": "id"
+        },
+        {
+            "relationshipName": "employers",
+            "otherEntityName": "employers",
+            "relationshipType": "many-to-one",
+            "otherEntityField": "id"
+        },
+        {
+            "relationshipName": "organisationType",
+            "otherEntityName": "organisationType",
+            "relationshipType": "many-to-one",
+            "otherEntityField": "id"
+        },
+        {
+            "relationshipName": "sector",
+            "otherEntityName": "sector",
+            "relationshipType": "many-to-one",
+            "otherEntityField": "id"
+        }
+    ],
+    "fields": [
+        {
+            "fieldName": "dateOfBirth",
+            "fieldType": "LocalDate"
+        },
+        {
+            "fieldName": "noOfSon",
+            "fieldType": "Integer"
+        },
+        {
+            "fieldName": "noOfDaughter",
+            "fieldType": "Integer"
+        },
+        {
+            "fieldName": "yearOfEmployed",
+            "fieldType": "LocalDate"
+        },
+        {
+            "fieldName": "nameOfOrganisation",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "establishment",
+            "fieldType": "LocalDate"
+        },
+        {
+            "fieldName": "commencement",
+            "fieldType": "LocalDate"
+        }
+    ],
+    "changelogDate": "20170913165023",
+    "entityTableName": "basic_information",
+    "dto": "no",
+    "pagination": "no",
+    "service": "no"
+}

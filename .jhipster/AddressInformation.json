@@ -1,0 +1,40 @@
+{
+    "fluentMethods": true,
+    "relationships": [
+        {
+            "relationshipName": "registrationInformation",
+            "otherEntityName": "registrationInformation",
+            "relationshipType": "many-to-one",
+            "otherEntityField": "id"
+        },
+        {
+            "relationshipName": "addressType",
+            "otherEntityName": "addressType",
+            "relationshipType": "many-to-one",
+            "otherEntityField": "id"
+        },
+        {
+            "relationshipName": "addressFor",
+            "otherEntityName": "addressFor",
+            "relationshipType": "many-to-one",
+            "otherEntityField": "id"
+        },
+        {
+            "relationshipName": "pincode",
+            "otherEntityName": "pincode",
+            "relationshipType": "many-to-one",
+            "otherEntityField": "id"
+        }
+    ],
+    "fields": [
+        {
+            "fieldName": "landmark",
+            "fieldType": "String"
+        }
+    ],
+    "changelogDate": "20170913165024",
+    "entityTableName": "address_information",
+    "dto": "no",
+    "pagination": "no",
+    "service": "no"
+}

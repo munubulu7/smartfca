@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.5.xsd">
+    <!--
+        Added the constraints for entity BasicInformation.
+    -->
+    <changeSet id="20170913165023-2" author="jhipster">
+        
+        <addForeignKeyConstraint baseColumnNames="registration_information_id"
+                                 baseTableName="basic_information"
+                                 constraintName="fk_basic_information_registration_information_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="registration_information"/>
+
+        <addForeignKeyConstraint baseColumnNames="name_id"
+                                 baseTableName="basic_information"
+                                 constraintName="fk_basic_information_name_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="person"/>
+
+        <addForeignKeyConstraint baseColumnNames="father_id"
+                                 baseTableName="basic_information"
+                                 constraintName="fk_basic_information_father_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="person"/>
+
+        <addForeignKeyConstraint baseColumnNames="mother_id"
+                                 baseTableName="basic_information"
+                                 constraintName="fk_basic_information_mother_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="person"/>
+
+        <addForeignKeyConstraint baseColumnNames="residential_status_id"
+                                 baseTableName="basic_information"
+                                 constraintName="fk_basic_information_residential_status_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="residential_status"/>
+
+        <addForeignKeyConstraint baseColumnNames="marital_status_id"
+                                 baseTableName="basic_information"
+                                 constraintName="fk_basic_information_marital_status_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="marital_status"/>
+
+        <addForeignKeyConstraint baseColumnNames="gender_id"
+                                 baseTableName="basic_information"
+                                 constraintName="fk_basic_information_gender_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="gender"/>
+
+        <addForeignKeyConstraint baseColumnNames="occupation_id"
+                                 baseTableName="basic_information"
+                                 constraintName="fk_basic_information_occupation_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="occupation"/>
+
+        <addForeignKeyConstraint baseColumnNames="employers_id"
+                                 baseTableName="basic_information"
+                                 constraintName="fk_basic_information_employers_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="employers"/>
+
+        <addForeignKeyConstraint baseColumnNames="organisation_type_id"
+                                 baseTableName="basic_information"
+                                 constraintName="fk_basic_information_organisation_type_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="organisation_type"/>
+
+        <addForeignKeyConstraint baseColumnNames="sector_id"
+                                 baseTableName="basic_information"
+                                 constraintName="fk_basic_information_sector_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="sector"/>
+
+    </changeSet>
+</databaseChangeLog>

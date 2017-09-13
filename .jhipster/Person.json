@@ -1,0 +1,30 @@
+{
+    "fluentMethods": true,
+    "relationships": [
+        {
+            "relationshipName": "salutation",
+            "otherEntityName": "salutation",
+            "relationshipType": "many-to-one",
+            "otherEntityField": "id"
+        }
+    ],
+    "fields": [
+        {
+            "fieldName": "fName",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "mName",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "lName",
+            "fieldType": "String"
+        }
+    ],
+    "changelogDate": "20170913165027",
+    "entityTableName": "person",
+    "dto": "no",
+    "pagination": "no",
+    "service": "no"
+}

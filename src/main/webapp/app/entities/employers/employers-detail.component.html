@@ -1,0 +1,35 @@
+
+<div *ngIf="employers">
+    <h2><span>Employers</span> {{employers.id}}</h2>
+    <hr>
+    <jhi-alert-error></jhi-alert-error>
+    <dl class="row-md jh-entity-details">
+        <dt><span>Name</span></dt>
+        <dd>
+            <span>{{employers.name}}</span>
+        </dd>
+        <dt><span>Description</span></dt>
+        <dd>
+            <span>{{employers.description}}</span>
+        </dd>
+        <dt><span>Occupation</span></dt>
+        <dd>
+            <div *ngIf="employers.occupation">
+                <a [routerLink]="['/occupation', employers.occupation?.id]">{{employers.occupation?.id}}</a>
+            </div>
+        </dd>
+    </dl>
+
+    <button type="submit"
+            (click)="previousState()"
+            class="btn btn-info">
+        <span class="fa fa-arrow-left"></span>&nbsp;<span> Back</span>
+    </button>
+
+    <button type="button"
+            [routerLink]="['/', { outlets: { popup: 'employers/'+ employers.id + '/edit'} }]"
+            replaceUrl="true"
+            class="btn btn-primary">
+        <span class="fa fa-pencil"></span>&nbsp;<span> Edit</span>
+    </button>
+</div>

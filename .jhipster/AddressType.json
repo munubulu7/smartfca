@@ -1,0 +1,22 @@
+{
+    "fluentMethods": true,
+    "relationships": [
+        {
+            "relationshipType": "one-to-many",
+            "relationshipName": "addressInfos",
+            "otherEntityName": "addressInformation",
+            "otherEntityRelationshipName": "addressType"
+        }
+    ],
+    "fields": [
+        {
+            "fieldName": "type",
+            "fieldType": "String"
+        }
+    ],
+    "changelogDate": "20170913165040",
+    "entityTableName": "address_type",
+    "dto": "no",
+    "pagination": "no",
+    "service": "no"
+}

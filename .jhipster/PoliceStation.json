@@ -1,0 +1,28 @@
+{
+    "fluentMethods": true,
+    "relationships": [
+        {
+            "relationshipName": "areaName",
+            "otherEntityName": "areaName",
+            "relationshipType": "many-to-one",
+            "otherEntityField": "id"
+        },
+        {
+            "relationshipType": "one-to-many",
+            "relationshipName": "postOffices",
+            "otherEntityName": "postOffice",
+            "otherEntityRelationshipName": "policeStation"
+        }
+    ],
+    "fields": [
+        {
+            "fieldName": "name",
+            "fieldType": "String"
+        }
+    ],
+    "changelogDate": "20170913165046",
+    "entityTableName": "police_station",
+    "dto": "no",
+    "pagination": "no",
+    "service": "no"
+}

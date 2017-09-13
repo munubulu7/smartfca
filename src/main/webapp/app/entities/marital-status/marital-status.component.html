@@ -1,0 +1,56 @@
+<div>
+    <h2>
+        <span>Marital Statuses</span>
+        <button class="btn btn-primary float-right create-marital-status" [routerLink]="['/', { outlets: { popup: ['marital-status-new'] } }]">
+            <span class="fa fa-plus"></span>
+            <span >
+            Create new Marital Status
+            </span>
+        </button>
+    </h2>
+    <jhi-alert></jhi-alert>
+    <div class="row">
+    </div>
+    <br/>
+    <div class="table-responsive" *ngIf="maritalStatuses">
+        <table class="table table-striped">
+            <thead>
+            <tr>
+            <th><span>ID</span></th>
+            <th><span>Status</span></th>
+            <th></th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr *ngFor="let maritalStatus of maritalStatuses ;trackBy: trackId">
+                <td><a [routerLink]="['../marital-status', maritalStatus.id ]">{{maritalStatus.id}}</a></td>
+                <td>{{maritalStatus.status}}</td>
+                <td class="text-right">
+                    <div class="btn-group flex-btn-group-container">
+                        <button type="submit"
+                                [routerLink]="['../marital-status', maritalStatus.id ]"
+                                class="btn btn-info btn-sm">
+                            <span class="fa fa-eye"></span>
+                            <span class="hidden-md-down">View</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/', { outlets: { popup: 'marital-status/'+ maritalStatus.id + '/edit'} }]"
+                                replaceUrl="true"
+                                class="btn btn-primary btn-sm">
+                            <span class="fa fa-pencil"></span>
+                            <span class="hidden-md-down">Edit</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/', { outlets: { popup: 'marital-status/'+ maritalStatus.id + '/delete'} }]"
+                                replaceUrl="true"
+                                class="btn btn-danger btn-sm">
+                            <span class="fa fa-remove"></span>
+                            <span class="hidden-md-down">Delete</span>
+                        </button>
+                    </div>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

@@ -1,0 +1,28 @@
+{
+    "fluentMethods": true,
+    "relationships": [
+        {
+            "relationshipName": "state",
+            "otherEntityName": "state",
+            "relationshipType": "many-to-one",
+            "otherEntityField": "id"
+        },
+        {
+            "relationshipType": "one-to-many",
+            "relationshipName": "areaNames",
+            "otherEntityName": "areaName",
+            "otherEntityRelationshipName": "cityDistrictTown"
+        }
+    ],
+    "fields": [
+        {
+            "fieldName": "name",
+            "fieldType": "String"
+        }
+    ],
+    "changelogDate": "20170913165043",
+    "entityTableName": "city_district_town",
+    "dto": "no",
+    "pagination": "no",
+    "service": "no"
+}
