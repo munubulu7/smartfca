@@ -11,6 +11,7 @@ export class RegistrationInformation implements BaseEntity {
         public basicInfos?: BaseEntity[],
         public contactInfos?: BaseEntity[],
         public addressInfos?: BaseEntity[],
+        public tickets?: BaseEntity[],
         public centerLocation?: BaseEntity,
         public registrationType?: BaseEntity,
     ) {

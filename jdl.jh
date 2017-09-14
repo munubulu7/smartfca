@@ -101,6 +101,22 @@ entity PremisesBuildingVillage{
 entity Pincode{
 	pincode String
 }
+entity Ticket{
+	ticketNo String,
+    title String,
+    description String,
+    note String,
+    createdDate ZonedDateTime,
+    resolvDate ZonedDateTime,
+}
+entity TicketStatus{
+	status String
+}
+entity ConfigParameter{
+	name String,
+    description String,
+    value String
+}
 
 relationship OneToMany{
 	CenterLocation{regInfos} to RegistrationInformation,
@@ -136,7 +152,10 @@ relationship OneToMany{
     RegistrationInformation{addressInfos} to AddressInformation,
     AddressType{addressInfos} to AddressInformation,
     AddressFor{addressInfos} to AddressInformation,
-    Pincode{addressInfos} to AddressInformation
+    Pincode{addressInfos} to AddressInformation,
+
+    RegistrationInformation{tickets} to Ticket,
+    TicketStatus{tickets} to Ticket
 }
 
 relationship OneToOne{

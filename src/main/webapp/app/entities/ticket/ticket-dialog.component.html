@@ -1,0 +1,73 @@
+<form name="editForm" role="form" novalidate (ngSubmit)="save()" #editForm="ngForm">
+
+    <div class="modal-header">
+        <h4 class="modal-title" id="myTicketLabel">Create or edit a Ticket</h4>
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true"
+                (click)="clear()">&times;</button>
+    </div>
+    <div class="modal-body">
+        <jhi-alert-error></jhi-alert-error>
+        <div class="form-group" [hidden]="!ticket.id">
+            <label for="id">ID</label>
+            <input type="text" class="form-control" id="id" name="id"
+                   [(ngModel)]="ticket.id" readonly />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" for="field_ticketNo">Ticket No</label>
+            <input type="text" class="form-control" name="ticketNo" id="field_ticketNo"
+                [(ngModel)]="ticket.ticketNo"  />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" for="field_title">Title</label>
+            <input type="text" class="form-control" name="title" id="field_title"
+                [(ngModel)]="ticket.title"  />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" for="field_description">Description</label>
+            <input type="text" class="form-control" name="description" id="field_description"
+                [(ngModel)]="ticket.description"  />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" for="field_note">Note</label>
+            <input type="text" class="form-control" name="note" id="field_note"
+                [(ngModel)]="ticket.note"  />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" for="field_createdDate">Created Date</label>
+            <div class="d-flex">
+                <input id="field_createdDate" type="datetime-local" class="form-control" name="createdDate" [(ngModel)]="ticket.createdDate"
+                  />
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" for="field_resolvDate">Resolv Date</label>
+            <div class="d-flex">
+                <input id="field_resolvDate" type="datetime-local" class="form-control" name="resolvDate" [(ngModel)]="ticket.resolvDate"
+                  />
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label for="field_registrationInformation">Registration Information</label>
+            <select class="form-control" id="field_registrationInformation" name="registrationInformation" [(ngModel)]="ticket.registrationInformation" >
+                <option [ngValue]="null"></option>
+                <option [ngValue]="registrationInformationOption.id === ticket.registrationInformation?.id ? ticket.registrationInformation : registrationInformationOption" *ngFor="let registrationInformationOption of registrationinformations; trackBy: trackRegistrationInformationById">{{registrationInformationOption.id}}</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label for="field_ticketStatus">Ticket Status</label>
+            <select class="form-control" id="field_ticketStatus" name="ticketStatus" [(ngModel)]="ticket.ticketStatus" >
+                <option [ngValue]="null"></option>
+                <option [ngValue]="ticketStatusOption.id === ticket.ticketStatus?.id ? ticket.ticketStatus : ticketStatusOption" *ngFor="let ticketStatusOption of ticketstatuses; trackBy: trackTicketStatusById">{{ticketStatusOption.id}}</option>
+            </select>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal" (click)="clear()">
+            <span class="fa fa-ban"></span>&nbsp;<span>Cancel</span>
+        </button>
+        <button type="submit" [disabled]="editForm.form.invalid || isSaving" class="btn btn-primary">
+            <span class="fa fa-save"></span>&nbsp;<span>Save</span>
+        </button>
+    </div>
+</form>

@@ -1,0 +1,57 @@
+
+<div *ngIf="ticket">
+    <h2><span>Ticket</span> {{ticket.id}}</h2>
+    <hr>
+    <jhi-alert-error></jhi-alert-error>
+    <dl class="row-md jh-entity-details">
+        <dt><span>Ticket No</span></dt>
+        <dd>
+            <span>{{ticket.ticketNo}}</span>
+        </dd>
+        <dt><span>Title</span></dt>
+        <dd>
+            <span>{{ticket.title}}</span>
+        </dd>
+        <dt><span>Description</span></dt>
+        <dd>
+            <span>{{ticket.description}}</span>
+        </dd>
+        <dt><span>Note</span></dt>
+        <dd>
+            <span>{{ticket.note}}</span>
+        </dd>
+        <dt><span>Created Date</span></dt>
+        <dd>
+            <span>{{ticket.createdDate | date:'medium'}}</span>
+        </dd>
+        <dt><span>Resolv Date</span></dt>
+        <dd>
+            <span>{{ticket.resolvDate | date:'medium'}}</span>
+        </dd>
+        <dt><span>Registration Information</span></dt>
+        <dd>
+            <div *ngIf="ticket.registrationInformation">
+                <a [routerLink]="['/registration-information', ticket.registrationInformation?.id]">{{ticket.registrationInformation?.id}}</a>
+            </div>
+        </dd>
+        <dt><span>Ticket Status</span></dt>
+        <dd>
+            <div *ngIf="ticket.ticketStatus">
+                <a [routerLink]="['/ticket-status', ticket.ticketStatus?.id]">{{ticket.ticketStatus?.id}}</a>
+            </div>
+        </dd>
+    </dl>
+
+    <button type="submit"
+            (click)="previousState()"
+            class="btn btn-info">
+        <span class="fa fa-arrow-left"></span>&nbsp;<span> Back</span>
+    </button>
+
+    <button type="button"
+            [routerLink]="['/', { outlets: { popup: 'ticket/'+ ticket.id + '/edit'} }]"
+            replaceUrl="true"
+            class="btn btn-primary">
+        <span class="fa fa-pencil"></span>&nbsp;<span> Edit</span>
+    </button>
+</div>

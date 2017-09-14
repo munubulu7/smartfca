@@ -1,0 +1,22 @@
+{
+    "fluentMethods": true,
+    "relationships": [
+        {
+            "relationshipType": "one-to-many",
+            "relationshipName": "tickets",
+            "otherEntityName": "ticket",
+            "otherEntityRelationshipName": "ticketStatus"
+        }
+    ],
+    "fields": [
+        {
+            "fieldName": "status",
+            "fieldType": "String"
+        }
+    ],
+    "changelogDate": "20170914180137",
+    "entityTableName": "ticket_status",
+    "dto": "no",
+    "pagination": "no",
+    "service": "no"
+}

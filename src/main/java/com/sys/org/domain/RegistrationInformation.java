@@ -55,6 +55,11 @@ public class RegistrationInformation implements Serializable {
     @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
     private Set<AddressInformation> addressInfos = new HashSet<>();
 
+    @OneToMany(mappedBy = "registrationInformation")
+    @JsonIgnore
+    @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
+    private Set<Ticket> tickets = new HashSet<>();
+
     @ManyToOne
     private CenterLocation centerLocation;
 
@@ -207,6 +212,31 @@ public class RegistrationInformation implements Serializable {
 
     public void setAddressInfos(Set<AddressInformation> addressInformations) {
         this.addressInfos = addressInformations;
+    }
+
+    public Set<Ticket> getTickets() {
+        return tickets;
+    }
+
+    public RegistrationInformation tickets(Set<Ticket> tickets) {
+        this.tickets = tickets;
+        return this;
+    }
+
+    public RegistrationInformation addTickets(Ticket ticket) {
+        this.tickets.add(ticket);
+        ticket.setRegistrationInformation(this);
+        return this;
+    }
+
+    public RegistrationInformation removeTickets(Ticket ticket) {
+        this.tickets.remove(ticket);
+        ticket.setRegistrationInformation(null);
+        return this;
+    }
+
+    public void setTickets(Set<Ticket> tickets) {
+        this.tickets = tickets;
     }
 
     public CenterLocation getCenterLocation() {

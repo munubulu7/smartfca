@@ -33,6 +33,9 @@
     <include file="classpath:config/liquibase/changelog/20170913165047_added_entity_PostOffice.xml" relativeToChangelogFile="false"/>
     <include file="classpath:config/liquibase/changelog/20170913165048_added_entity_PremisesBuildingVillage.xml" relativeToChangelogFile="false"/>
     <include file="classpath:config/liquibase/changelog/20170913165049_added_entity_Pincode.xml" relativeToChangelogFile="false"/>
+    <include file="classpath:config/liquibase/changelog/20170914180136_added_entity_Ticket.xml" relativeToChangelogFile="false"/>
+    <include file="classpath:config/liquibase/changelog/20170914180137_added_entity_TicketStatus.xml" relativeToChangelogFile="false"/>
+    <include file="classpath:config/liquibase/changelog/20170914180138_added_entity_ConfigParameter.xml" relativeToChangelogFile="false"/>
     <!-- jhipster-needle-liquibase-add-changelog - JHipster will add liquibase changelogs here -->
     <include file="classpath:config/liquibase/changelog/20170913165022_added_entity_constraints_RegistrationInformation.xml" relativeToChangelogFile="false"/>
     <include file="classpath:config/liquibase/changelog/20170913165023_added_entity_constraints_BasicInformation.xml" relativeToChangelogFile="false"/>
@@ -47,5 +50,6 @@
     <include file="classpath:config/liquibase/changelog/20170913165047_added_entity_constraints_PostOffice.xml" relativeToChangelogFile="false"/>
     <include file="classpath:config/liquibase/changelog/20170913165048_added_entity_constraints_PremisesBuildingVillage.xml" relativeToChangelogFile="false"/>
     <include file="classpath:config/liquibase/changelog/20170913165049_added_entity_constraints_Pincode.xml" relativeToChangelogFile="false"/>
+    <include file="classpath:config/liquibase/changelog/20170914180136_added_entity_constraints_Ticket.xml" relativeToChangelogFile="false"/>
     <!-- jhipster-needle-liquibase-add-constraints-changelog - JHipster will add liquibase constraints changelogs here -->
 </databaseChangeLog>

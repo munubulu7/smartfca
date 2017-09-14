@@ -96,6 +96,11 @@ public class CacheConfiguration {
             cm.createCache(com.sys.org.domain.PremisesBuildingVillage.class.getName() + ".pincodes", jcacheConfiguration);
             cm.createCache(com.sys.org.domain.Pincode.class.getName(), jcacheConfiguration);
             cm.createCache(com.sys.org.domain.Pincode.class.getName() + ".addressInfos", jcacheConfiguration);
+            cm.createCache(com.sys.org.domain.RegistrationInformation.class.getName() + ".tickets", jcacheConfiguration);
+            cm.createCache(com.sys.org.domain.Ticket.class.getName(), jcacheConfiguration);
+            cm.createCache(com.sys.org.domain.TicketStatus.class.getName(), jcacheConfiguration);
+            cm.createCache(com.sys.org.domain.TicketStatus.class.getName() + ".tickets", jcacheConfiguration);
+            cm.createCache(com.sys.org.domain.ConfigParameter.class.getName(), jcacheConfiguration);
             // jhipster-needle-ehcache-add-entry
         };
     }
