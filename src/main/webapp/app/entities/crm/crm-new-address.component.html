@@ -1,0 +1,186 @@
+<jhi-alert></jhi-alert>
+<jhi-alert-error></jhi-alert-error>
+<div class="panel-group">
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <h4 class="panel-title">
+                <a data-toggle="collapse" data-parent="#accordion">
+                    <span>Address</span> <i class="more-less fa fa-chevron-down" aria-hidden="true"></i>
+                </a>
+            </h4>
+        </div>
+        <div id="collapse5" class="panel-collapse collapse in">
+            <div class="panel-body custom-form-bx">
+                <div class="form-outer-str">
+
+                    <div class="clearfix">
+                        <div class="col-sm-3">
+                            <div class="form-group">
+                                <label class="cus-form-label">Address Type </label>
+                                <select class="form-control" [(ngModel)]="addressInfo.addressType">
+                                    <option *ngFor="let addressType of addressTypeList" [ngValue]="addressType">
+                                        {{addressType.type}}
+                                    </option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-sm-3">
+                            <div class="form-group">
+                                <label class="cus-form-label">State</label>
+                                <select class="form-control" [(ngModel)]="selectedState"
+                                        (change)="populateDistrict()">
+                                    <option></option>
+                                    <option *ngFor="let state of stateList" [ngValue]="state">{{state.name}}
+                                    </option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-sm-3">
+                            <div class="form-group">
+                                <label class="cus-form-label">City/Town/District</label>
+                                <select class="form-control" (change)="populateArea()"
+                                        [(ngModel)]="selectedDistrict">
+                                    <option *ngFor="let district of districtList" [ngValue]="district">
+                                        {{district.name}}
+                                    </option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="col-sm-3">
+                            <div class="form-group">
+                                <label class="cus-form-label">Area Type </label>
+                                <select class="form-control" [(ngModel)]="selectedAreaType"
+                                        (change)="populateArea()">
+                                    <option *ngFor="let areaType of areaTypeList" [ngValue]="areaType">
+                                        {{areaType.name}}
+                                    </option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="col-sm-3">
+                            <div class="form-group">
+                                <label class="cus-form-label">Municipality/Block Office/Taluka</label>
+                                <select class="form-control" [(ngModel)]="selectedAreaName"
+                                        (change)="populatePoliceStation()">
+                                    <option *ngFor="let area of areaList" [ngValue]="area">{{area.name}}</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="col-sm-3">
+                            <div class="form-group">
+                                <label class="cus-form-label">Police Station</label>
+                                <select class="form-control" [(ngModel)]="selectedPoliceStation"
+                                        (change)="populatePostOffice()">
+                                    <option *ngFor="let policeStation of policeStationList"
+                                            [ngValue]="policeStation">{{policeStation.name}}
+                                    </option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="col-sm-3">
+                            <div class="form-group">
+                                <label class="cus-form-label">Post Office</label>
+                                <select class="form-control" [(ngModel)]="selectedPostOffice"
+                                        (change)="populateVillages()">
+                                    <option *ngFor="let postOffice of postOfficeList" [ngValue]="postOffice">
+                                        {{postOffice.name}}
+                                    </option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="col-sm-3">
+                            <div class="form-group">
+                                <label class="cus-form-label">Premises/Building/Village</label>
+                                <select class="form-control" [(ngModel)]="selectedVillage"
+                                        (change)="populatePincode()">
+                                    <option *ngFor="let village of villageList" [ngValue]="village">
+                                        {{village.name}}
+                                    </option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="col-sm-3">
+                            <div class="form-group">
+                                <label class="cus-form-label">Pincode</label>
+                                <select class="form-control" [(ngModel)]="addressInfo.pincode">
+                                    <option *ngFor="let pincode of pincodeList" [ngValue]="pincode">
+                                        {{pincode.pincode}}
+                                    </option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="col-sm-3">
+                            <div class="form-group">
+                                <label class="cus-form-label">Flat No/Room No/Block No</label>
+                                <select class="form-control">
+                                    <option>Flat No</option>
+                                    <option>Room No</option>
+                                    <option>Block No</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-sm-3">
+                            <div class="form-group">
+                                <label class="cus-form-label">Details</label>
+                                <input type="text" class="form-control">
+                            </div>
+                        </div>
+
+
+                        <div class="col-sm-3">
+                            <div class="form-group">
+                                <label class="cus-form-label">Land Mark</label>
+                                <input class="form-control" placeholder="Landmark"
+                                       [(ngModel)]="addressInfo.landmark">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="clearfix">
+                        <div class="col-sm-3">
+                            <div class="form-group">
+                                <label class="cus-form-label">Road/Street/Lane/Post office</label>
+                                <select class="form-control">
+                                    <option>Road</option>
+                                    <option>Street</option>
+                                    <option>Lane</option>
+                                    <option>Post office</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-sm-3">
+                            <div class="form-group">
+                                <label class="cus-form-label">Details</label>
+                                <input type="text" class="form-control">
+                            </div>
+                        </div>
+
+                        <div class="col-sm-3">
+                            <div class="form-group">
+                                <label class="cus-form-label">As Communication Address</label>
+                                <input type="checkbox" class="chkbx-str">
+                            </div>
+                        </div>
+                        <div class="col-sm-3">
+                            <div class="form-group">
+                                <label class="cus-form-label">As Billing Address</label>
+                                <input type="checkbox" class="chkbx-str">
+                            </div>
+                        </div>
+                        <div class="clearfix"></div>
+                        <div class="col-sm-12">
+                            <input class="btn btn-primary" type="button" value="Next" (click)="submit()">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

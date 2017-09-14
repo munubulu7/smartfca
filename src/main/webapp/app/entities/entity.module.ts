@@ -28,6 +28,7 @@ import { Smartfca001PoliceStationModule } from './police-station/police-station.
 import { Smartfca001PostOfficeModule } from './post-office/post-office.module';
 import { Smartfca001PremisesBuildingVillageModule } from './premises-building-village/premises-building-village.module';
 import { Smartfca001PincodeModule } from './pincode/pincode.module';
+import {CustomerRelationModule} from "./crm/customer.relation.module";
 /* jhipster-needle-add-entity-module-import - JHipster will add entity modules imports here */
 
 @NgModule({
@@ -60,6 +61,7 @@ import { Smartfca001PincodeModule } from './pincode/pincode.module';
         Smartfca001PostOfficeModule,
         Smartfca001PremisesBuildingVillageModule,
         Smartfca001PincodeModule,
+        CustomerRelationModule,
         /* jhipster-needle-add-entity-module - JHipster will add entity modules here */
     ],
     declarations: [],

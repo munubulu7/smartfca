@@ -1,0 +1,43 @@
+<jhi-alert></jhi-alert>
+<jhi-alert-error></jhi-alert-error>
+<div *ngIf="contactInfoList.length>0">
+    <div class="col-sm-4">
+        <div class="form-group inner-form-group">
+            <label class="cus-form-label">Add Contact</label>
+            <div class="clearfix">
+                <div class="col-sm-5 pad-lft-none">
+                    <select class="form-control" [(ngModel)]="contactInfoList[0].contactType">
+                        <option *ngFor="let contactType of contactTypeList" [ngValue]="contactType">
+                            {{contactType.type}}
+                        </option>
+                    </select>
+                </div>
+                <div class="col-sm-7 pad-lft-none">
+                    <input class="form-control" type="text" [(ngModel)]="contactInfoList[0].contactDetails">
+                    <span class="add-icon"><a (click)="addContactInfo()"><i class="fa fa-plus-circle"
+                                                                            aria-hidden="true"></i></a></span>
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-sm-4" *ngFor="let contactInfo of contactInfoList | slice:1;let j=index">
+        <div class="form-group inner-form-group">
+            <label class="cus-form-label">Add Contact</label>
+            <div class="clearfix">
+                <div class="col-sm-5 pad-lft-none">
+                    <select class="form-control" [(ngModel)]="contactInfo.contactType">
+                        <option *ngFor="let contactType of contactTypeList" [ngValue]="contactType">
+                            {{contactType.type}}
+                        </option>
+                    </select>
+                </div>
+                <div class="col-sm-7 pad-lft-none">
+                    <input class="form-control" [(ngModel)]="contactInfo.contactDetails">
+                    <span class="add-icon"><a (click)="deleteContactInfo(j+1)"><i
+                        class="fa fa-window-close"></i></a></span>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
