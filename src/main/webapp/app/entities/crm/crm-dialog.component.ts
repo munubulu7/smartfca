@@ -97,7 +97,7 @@ export class CrmDialogComponent implements OnInit {
     selectedPoliceStation: PoliceStation;
     selectedPostOffice: PostOffice;
     selectedVillage: PremisesBuildingVillage;
-    contactInfoList: ContactInfo[]=[];
+    contactInfoList: ContactInfo[] = [];
 
     minDate: NgbDateStruct;
     maxDate: NgbDateStruct;
@@ -248,6 +248,23 @@ export class CrmDialogComponent implements OnInit {
         this.registrationInformationService.create(this.regInfo).subscribe(
             (res: RegistrationInformation) => {
                 this.regInfo = res;
+                this.contactInfoList.map((value, index) => {
+                    value.registrationInformation = this.regInfo;
+                    this.contactInfoService.create(value).subscribe(
+                        (res: ContactInfo) => {
+                            this.eventManager.broadcast({
+                                name: 'contactInfoListModification',
+                                content: 'OK'
+                            });
+                        },
+                        (res: Response) => {
+                            try {
+                                res.json();
+                            } catch (exception) {
+                                this.onError(exception.text);
+                            }
+                        });
+                });
                 this.eventManager.broadcast({name: 'registrationInformationListModification', content: 'OK'});
                 this.isOpenBasicInfo = 'in';
                 this.isOpenAddress = '';
@@ -259,7 +276,6 @@ export class CrmDialogComponent implements OnInit {
                 } catch (exception) {
                     this.onError(exception.text);
                 }
-
             }
         );
     }

@@ -16,7 +16,7 @@ import java.util.Map;
 public class PersistentAuditEvent implements Serializable {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue
     @Column(name = "event_id")
     private Long id;
 
