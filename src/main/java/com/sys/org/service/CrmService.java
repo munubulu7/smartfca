@@ -78,4 +78,10 @@ public class CrmService {
         q.setParameter("regId", regId);
         return q.getResultList();
     }
+
+    public ConfigParameter getConfigParam(String name){
+        TypedQuery<ConfigParameter> q = em.createQuery("select c from ConfigParameter c where c.name=:name", ConfigParameter.class);
+        q.setParameter("name", name);
+        return q.getSingleResult();
+    }
 }

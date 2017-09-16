@@ -3,10 +3,15 @@ package com.sys.org.web.rest;
 import com.codahale.metrics.annotation.Timed;
 import com.sys.org.domain.*;
 import com.sys.org.service.CrmService;
+import com.sys.org.utility.common.Utility;
 import com.sys.org.web.rest.util.HeaderUtil;
+import com.twilio.twiml.Say;
+import com.twilio.twiml.TwiMLException;
+import com.twilio.twiml.VoiceResponse;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -106,8 +111,19 @@ public class CrmResource {
         return crmService.getAllAddressesByRegInfoId(regId);
     }
 
-    @PostMapping("twilio")
-    public void responseOfCall(@RequestParam(name = "from") String from){
-
+    @PostMapping(value = "twilio", produces = MediaType.APPLICATION_XML_VALUE)
+    public String responseOfCall(@RequestParam(name = "from") String from) {
+        VoiceResponse twiml = new VoiceResponse.Builder()
+            .say(new Say.Builder("Hello world!")
+                .voice(Say.Voice.ALICE)
+                .build())
+            .build();
+        Utility.getInstance().sendMessage(from, Utility.getInstance().getConfigValue("ticketGenarated", "").getValue());
+        try {
+            return twiml.toXml();
+        } catch (TwiMLException e) {
+            e.printStackTrace();
+        }
+        return "";
     }
 }
