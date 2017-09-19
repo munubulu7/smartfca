@@ -4,6 +4,7 @@ import {CrmDialogComponent} from "./crm-dialog.component";
 import {CrmComponent} from "./crm.component";
 import {CrmAddressComponent} from "./crm-address.component";
 import {CrmNewAddressComponent} from "./crm-new-address.component";
+import {CrmBasicInformationComponent} from "./crm-basic-information.component";
 
 export const crmPopupRoute: Routes = [
     {
@@ -18,6 +19,15 @@ export const crmPopupRoute: Routes = [
     {
         path: 'crm-address/:regId',
         component: CrmAddressComponent,
+        data: {
+            authorities: ['ROLE_USER'],
+            pageTitle: 'Customers Relationship Model'
+        },
+        canActivate: [UserRouteAccessService]
+    },
+    {
+        path: 'crm-basic-info/:regId',
+        component: CrmBasicInformationComponent,
         data: {
             authorities: ['ROLE_USER'],
             pageTitle: 'Customers Relationship Model'

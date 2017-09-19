@@ -25,6 +25,7 @@
                 <th><span>Account Number</span></th>
                 <th><span>Registration Type</span></th>
                 <th><span>Addresses</span></th>
+                <th><span>Basic Information</span></th>
                 <th></th>
             </tr>
             </thead>
@@ -52,6 +53,11 @@
                 <td>
                     <div>
                         <a [routerLink]="['/crm-address', registrationInformation.id]">View Addresses</a>
+                    </div>
+                </td>
+                <td>
+                    <div>
+                        <a [routerLink]="['/crm-basic-info', registrationInformation.id]">View Information</a>
                     </div>
                 </td>
                 <td class="text-right">

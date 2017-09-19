@@ -63,6 +63,11 @@ export class CrmService {
             .map((res: Response) => this.convertResponse(res));
     }
 
+    public getBasicinformationByRegistration(id:Number): Observable<ResponseWrapper> {
+        return this.http.get(`${this.resourceUrl}basic-info/reg-inf/${id}`)
+            .map((res: Response) => this.convertResponse(res));
+    }
+
     private convertResponse(res: Response): ResponseWrapper {
         const jsonResponse = res.json();
         return new ResponseWrapper(res.headers, jsonResponse, res.status);

@@ -111,6 +111,13 @@ public class CrmResource {
         return crmService.getAllAddressesByRegInfoId(regId);
     }
 
+    @GetMapping("/basic-info/reg-inf/{id}")
+    @Timed
+    public List<BasicInformation> getBasicInformationByRegId(@PathVariable(name = "id") long regId) {
+        log.debug("REST request to get all Basic information of Registration information");
+        return crmService.getBasicInformationByRegId(regId);
+    }
+
     @PostMapping(value = "twilio", produces = MediaType.APPLICATION_XML_VALUE)
     public String responseOfCall(@RequestParam(name = "from") String from) {
         VoiceResponse twiml = new VoiceResponse.Builder()

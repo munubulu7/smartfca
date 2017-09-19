@@ -1,0 +1,364 @@
+<jhi-alert></jhi-alert>
+<jhi-alert-error></jhi-alert-error>
+<!-- For business Basic Information-->
+
+
+<div class="panel-group" [hidden]="isPersonal">
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <h4 class="panel-title">
+                <a data-toggle="collapse" data-parent="#accordion">
+                    <span>Basic Information</span> <i class="more-less fa fa-chevron-down" aria-hidden="true"></i>
+                </a>
+            </h4>
+        </div>
+        <div id="basic-business" class="panel-collapse collapse in">
+            <div class="panel-body custom-form-bx">
+                <div class="form-outer-str">
+                    <div class="col-sm-6">
+                        <div class="form-group">
+                            <label class="cus-form-label">Name of Organisation</label>
+                            <input type="text" class="form-control"
+                                   [(ngModel)]="businessBasicInfo.nameOfOrganisation">
+                        </div>
+                    </div>
+                    <div class="col-sm-2">
+                        <div class="form-group">
+                            <label class="cus-form-label">Organisation Type</label>
+                            <div class="rel-position">
+                                <select class="form-control" [(ngModel)]="businessBasicInfo.organisationType.id">
+                                    <option *ngFor="let orgnisationType of organisationTypeList"
+                                            [ngValue]="orgnisationType.id">{{orgnisationType.name}}
+                                    </option>
+                                </select>
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="col-sm-2">
+                        <div class="form-group">
+                            <label class="cus-form-label">Establishment</label>
+                            <div class="rel-position">
+                                <div class="input-group">
+                                    <input id="field_establishment" type="text" class="form-control"
+                                           name="establishment" ngbDatepicker #establishmentDp="ngbDatepicker"
+                                           [(ngModel)]="businessBasicInfo.establishment"
+                                    />
+                                    <span class="input-group-btn">
+                    <button type="button" class="btn btn-default" (click)="establishmentDp.toggle()"><i
+                        class="fa fa-calendar"></i></button>
+                </span>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                    <div class="col-sm-2">
+                        <div class="form-group">
+                            <label class="cus-form-label">Commencement</label>
+                            <div class="rel-position">
+                                <div class="input-group">
+                                    <input id="field_commencement" type="text" class="form-control"
+                                           name="commencement"
+                                           ngbDatepicker #commencementDp="ngbDatepicker"
+                                           [(ngModel)]="businessBasicInfo.commencement"
+                                    />
+                                    <span class="input-group-btn">
+                    <button type="button" class="btn btn-default" (click)="commencementDp.toggle()"><i
+                        class="fa fa-calendar"></i></button>
+                </span>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="clearfix"></div>
+
+                    <div class="col-sm-12">
+                        <div class="add-btn-str">
+                            <span class="add-icon-large"><a (click)="addContactPerson()">Add Contact Person<i
+                                class="fa fa-plus"
+                                aria-hidden="true"></i></a></span>
+                        </div>
+                    </div>
+                    <div class="clearfix">
+                        <div class="col-sm-12"></div>
+                    </div>
+                    <div *ngFor="let contactPerson of contactPersonFromGroup; let i=index;">
+                        <crm-contact-person (removeComponent)="deleteContactPerson(i)"
+                                            [contactPerson]="contactPersonFromGroup[i]"></crm-contact-person>
+                    </div>
+
+                    <div class="clearfix"></div>
+                    <div class="col-sm-3">
+                        <div class="form-group">
+                            <label class="cus-form-label">Sector</label>
+                            <select class="form-control" [(ngModel)]="businessBasicInfo.sector">
+                                <option *ngFor="let sector of sectorList" [ngValue]="sector">{{sector.name}}
+                                </option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col-sm-9"></div>
+                    <div class="clearfix"></div>
+                    <hr>
+                    <div class="form-outer-str">
+                        <div class="col-sm-3">
+                            <input class="btn btn-primary" type="button" value="Next" (click)="saveBasicInfo()">
+                        </div>
+                        <div class="col-sm-9"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<!-- For personal Basic Information-->
+
+
+<div class="panel-group" [hidden]="!isPersonal">
+
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <h4 class="panel-title">
+                <a data-toggle="collapse" data-parent="#accordion">
+                    <span>Basic Information</span> <i class="more-less fa fa-chevron-down" aria-hidden="true"></i>
+                </a>
+            </h4>
+        </div>
+        <div id="basic-personal" class="panel-collapse collapse in">
+            <div class="panel-body custom-form-bx">
+                <div class="form-outer-str">
+                    <div class="col-sm-6">
+                        <div class="form-group">
+                            <label class="cus-form-label">Applicant Name</label>
+                            <div class="row clearfix">
+                                <div class="col-sm-3">
+                                    <select class="form-control" [(ngModel)]="name.salutation">
+                                        <option *ngFor="let salutation of salutations" [ngValue]="salutation">
+                                            {{salutation.name}}
+                                        </option>
+                                    </select>
+                                </div>
+
+                                <div class="col-sm-3 pad-lft-none">
+                                    <input type="text" class="form-control" placeholder="First Name"
+                                           [(ngModel)]="name.fName">
+                                </div>
+                                <div class="col-sm-3 pad-lft-none">
+                                    <input type="text" class="form-control" placeholder="Middle Name"
+                                           [(ngModel)]="name.mName">
+                                </div>
+                                <div class="col-sm-3 pad-lft-none">
+                                    <input type="text" class="form-control" placeholder="Last Name"
+                                           [(ngModel)]="name.lName">
+                                </div>
+
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="col-sm-2">
+                        <div class="form-group">
+                            <label class="cus-form-label">Date of Birth</label>
+                            <div class="rel-position">
+                                <div class="input-group">
+                                    <input id="field_dateOfBirth" type="text" class="form-control"
+                                           name="dateOfBirth"
+                                           ngbDatepicker #dateOfBirthDp="ngbDatepicker"
+                                           [(ngModel)]="personalBasicInfo.dateOfBirth"
+                                    />
+                                    <span class="input-group-btn">
+                    <button type="button" class="btn btn-default" (click)="dateOfBirthDp.toggle()"><i
+                        class="fa fa-calendar"></i></button>
+                </span>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="col-sm-2">
+                        <div class="form-group">
+                            <label class="cus-form-label">Residential Status</label>
+                            <select class="form-control" [(ngModel)]="personalBasicInfo.residentialStatus">
+                                <option *ngFor="let residentialStatus of residentialStatuses"
+                                        [ngValue]="residentialStatus">
+                                    {{residentialStatus.status}}
+                                </option>
+                            </select>
+                        </div>
+
+                    </div>
+                    <div class="col-sm-2">
+                        <div class="form-group">
+                            <label class="cus-form-label">Gender</label>
+                            <select class="form-control" [(ngModel)]="personalBasicInfo.gender">
+                                <option *ngFor="let gender of genderList" [ngValue]="gender">{{gender.name}}
+                                </option>
+                            </select>
+                        </div>
+
+                    </div>
+                    <div class="clearfix"></div>
+                    <div class="col-sm-6">
+                        <div class="form-group">
+                            <label class="cus-form-label">Father’s Name</label>
+                            <div class="row clearfix">
+                                <div class="col-sm-3">
+                                    <select class="form-control" [(ngModel)]="father.salutation">
+                                        <option *ngFor="let salutation of salutations" [ngValue]="salutation">
+                                            {{salutation.name}}
+                                        </option>
+                                    </select>
+                                </div>
+
+                                <div class="col-sm-3 pad-lft-none">
+                                    <input type="text" class="form-control" placeholder="First Name"
+                                           [(ngModel)]="father.fName">
+                                </div>
+                                <div class="col-sm-3 pad-lft-none">
+                                    <input type="text" class="form-control" placeholder="Middle Name"
+                                           [(ngModel)]="father.mName">
+                                </div>
+                                <div class="col-sm-3 pad-lft-none">
+                                    <input type="text" class="form-control" placeholder="Last Name"
+                                           [(ngModel)]="father.lName">
+                                </div>
+
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <div class="col-sm-2">
+                        <div class="form-group">
+                            <label class="cus-form-label">Marital Status</label>
+                            <select class="form-control" [(ngModel)]="personalBasicInfo.maritalStatus">
+                                <option *ngFor="let maritalStatus of maritalStatuses" [ngValue]="maritalStatus">
+                                    {{maritalStatus.status}}
+                                </option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col-sm-2">
+                        <div class="form-group">
+                            <label class="cus-form-label">Son</label>
+                            <select class="form-control" [(ngModel)]="personalBasicInfo.noOfSon">
+                                <option value="1">1</option>
+                                <option value="2">2</option>
+                                <option value="3">3</option>
+                                <option value="4">4</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col-sm-2">
+                        <div class="form-group">
+                            <label class="cus-form-label">Daughter</label>
+                            <select class="form-control" [(ngModel)]="personalBasicInfo.noOfDaughter">
+                                <option value="1">1</option>
+                                <option value="2">2</option>
+                                <option value="3">3</option>
+                                <option value="4">4</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="clearfix"></div>
+
+                    <div class="col-sm-6">
+                        <div class="form-group">
+                            <label class="cus-form-label">Mother’s Name</label>
+                            <div class="row clearfix">
+                                <div class="col-sm-3">
+                                    <select class="form-control" [(ngModel)]="mother.salutation">
+                                        <option *ngFor="let salutation of salutations" [ngValue]="salutation">
+                                            {{salutation.name}}
+                                        </option>
+                                    </select>
+                                </div>
+
+                                <div class="col-sm-3 pad-lft-none">
+                                    <input type="text" class="form-control" placeholder="First Name"
+                                           [(ngModel)]="mother.fName">
+                                </div>
+                                <div class="col-sm-3 pad-lft-none">
+                                    <input type="text" class="form-control" placeholder="Middle Name"
+                                           [(ngModel)]="mother.mName">
+                                </div>
+                                <div class="col-sm-3 pad-lft-none">
+                                    <input type="text" class="form-control" placeholder="Last Name"
+                                           [(ngModel)]="mother.lName">
+                                </div>
+
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="col-sm-6"></div>
+                </div>
+                <div class="clearfix"></div>
+                <hr>
+                <div class="form-outer-str">
+                    <div class="col-sm-3">
+                        <div class="form-group">
+                            <label class="cus-form-label">Occupation</label>
+                            <div class="">
+                                <select class="form-control" [(ngModel)]="personalBasicInfo.occupation"
+                                        (change)="populateEmployers()">
+                                    <option *ngFor="let occupation of occupationList" [ngValue]="occupation">
+                                        {{occupation.occupation}}
+                                    </option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-3">
+                        <div class="form-group">
+                            <label class="cus-form-label">Employed With </label>
+                            <div>
+                                <select class="form-control" [(ngModel)]="personalBasicInfo.employers">
+                                    <option *ngFor="let employers of employersList" [ngValue]="employers">
+                                        {{employers.name}}
+                                    </option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-3">
+                        <div class="form-group">
+                            <label class="cus-form-label">Year of Self Employed</label>
+                            <select class="form-control" [(ngModel)]="personalBasicInfo.yearOfEmployed">
+                                <option value="1990">1990</option>
+                                <option value="1991">1991</option>
+                                <option value="1992">1992</option>
+                                <option value="1993">1993</option>
+                                <option value="1994">1994</option>
+                                <option value="1995">1995</option>
+                                <option value="1996">1996</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col-sm-3">
+                        <div class="form-group">
+                            <label class="cus-form-label">Sector</label>
+                            <select class="form-control" [(ngModel)]="personalBasicInfo.sector">
+                                <option *ngFor="let sector of sectorList" [ngValue]="sector">{{sector.name}}
+                                </option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                <div class="clearfix"></div>
+                <hr>
+                <div class="form-outer-str">
+                    <div class="col-sm-3">
+                        <input class="btn btn-primary" type="button" value="Next" (click)="saveBasicInfo()">
+                    </div>
+                    <div class="col-sm-9"></div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>

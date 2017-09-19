@@ -9,6 +9,7 @@ import {CrmComponent} from "./crm.component";
 import {CrmAddressComponent} from "./crm-address.component";
 import {CrmNewAddressComponent} from "./crm-new-address.component";
 import {ContactInfoComponent} from "./contact-info.component";
+import {CrmBasicInformationComponent} from "./crm-basic-information.component";
 
 const ENTITY_STATES = [
     ...crmPopupRoute,
@@ -27,6 +28,7 @@ const ENTITY_STATES = [
         CrmAddressComponent,
         CrmNewAddressComponent,
         ContactInfoComponent,
+        CrmBasicInformationComponent
     ],
     entryComponents: [
         CrmComponent,

@@ -25,6 +25,7 @@ public class ContactPerson implements Serializable {
     private Long id;
 
     @ManyToOne
+    @JsonIgnore
     private BasicInformation basicInformation;
 
     @ManyToOne

@@ -84,4 +84,10 @@ public class CrmService {
         q.setParameter("name", name);
         return q.getSingleResult();
     }
+
+    public List<BasicInformation> getBasicInformationByRegId(long regId) {
+        TypedQuery<BasicInformation> q = em.createQuery("select c from BasicInformation c where c.registrationInformation.id=:regId", BasicInformation.class);
+        q.setParameter("regId", regId);
+        return q.getResultList();
+    }
 }
