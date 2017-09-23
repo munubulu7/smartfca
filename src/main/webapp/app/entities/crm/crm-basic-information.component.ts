@@ -13,6 +13,17 @@ import {CrmContactPerson} from "./crm.contactPerson";
 import {ContactInfo} from "../contact-info/contact-info.model";
 import {Sector} from "../sector/sector.model";
 import {SectorService} from "../sector/sector.service";
+import {Employers} from "../employers/employers.model";
+import {ResidentialStatus} from "../residential-status/residential-status.model";
+import {ResidentialStatusService} from "../residential-status/residential-status.service";
+import {Gender} from "../gender/gender.model";
+import {MaritalStatus} from "../marital-status/marital-status.model";
+import {Occupation} from "../occupation/occupation.model";
+import {GenderService} from "../gender/gender.service";
+import {MaritalStatusService} from "../marital-status/marital-status.service";
+import {OccupationService} from "../occupation/occupation.service";
+import {AddressType} from "../address-type/address-type.model";
+import {AddressTypeService} from "../address-type/address-type.service";
 
 @Component({
     selector: 'crm-basic-info',
@@ -32,6 +43,12 @@ export class CrmBasicInformationComponent implements OnInit, OnDestroy {
     organisationTypeList: OrganisationType[];
     salutations: Salutation[];
     sectorList: Sector[];
+    employersList: Employers[];
+    genderList: Gender[];
+    maritalStatuses: MaritalStatus[];
+    occupationList: Occupation[];
+    addressTypeList: AddressType[];
+    residentialStatuses: ResidentialStatus[];
     contactPersonFromGroup: CrmContactPerson[] = [];
     name: Person;
     father: Person;
@@ -42,7 +59,12 @@ export class CrmBasicInformationComponent implements OnInit, OnDestroy {
 
     constructor(private alertService: JhiAlertService,
                 private route: ActivatedRoute,
+                private genderService: GenderService,
+                private addressTypeService: AddressTypeService,
+                private occupationService: OccupationService,
+                private maritalStatusService: MaritalStatusService,
                 private organisationTypeService: OrganisationTypeService,
+                private residentialStatusService: ResidentialStatusService,
                 private sectorService: SectorService,
                 private salutationService: SalutationService,
                 private crmService: CrmService) {
@@ -67,9 +89,40 @@ export class CrmBasicInformationComponent implements OnInit, OnDestroy {
             },
             (res: ResponseWrapper) => this.onError(res.json)
         );
+        this.genderService.query().subscribe(
+            (res: ResponseWrapper) => {
+                this.genderList = res.json;
+            },
+            (res: ResponseWrapper) => this.onError(res.json)
+        );
+        this.maritalStatusService.query().subscribe(
+            (res: ResponseWrapper) => {
+                this.maritalStatuses = res.json;
+            },
+            (res: ResponseWrapper) => this.onError(res.json)
+        );
+        this.occupationService.query().subscribe(
+            (res: ResponseWrapper) => {
+                this.occupationList = res.json;
+            },
+            (res: ResponseWrapper) => this.onError(res.json)
+        );
         this.sectorService.query().subscribe(
             (res: ResponseWrapper) => {
                 this.sectorList = res.json;
+            },
+            (res: ResponseWrapper) => this.onError(res.json)
+        );
+        this.addressTypeService.query().subscribe(
+            (res: ResponseWrapper) => {
+                this.addressTypeList = res.json;
+            },
+            (res: ResponseWrapper) => this.onError(res.json)
+        );
+
+        this.residentialStatusService.query().subscribe(
+            (res: ResponseWrapper) => {
+                this.residentialStatuses = res.json;
             },
             (res: ResponseWrapper) => this.onError(res.json)
         );
@@ -114,6 +167,19 @@ export class CrmBasicInformationComponent implements OnInit, OnDestroy {
         sampleContactPerson.contactInfoList = [];
         sampleContactPerson.contactInfoList.push(new ContactInfo());
         this.contactPersonFromGroup.push(sampleContactPerson);
+    }
+
+    populateEmployers() {
+        this.crmService.getEmployersByOccupation(this.personalBasicInfo.occupation.id).subscribe(
+            (res: ResponseWrapper) => {
+                this.employersList = res.json;
+            },
+            (res: ResponseWrapper) => this.onError(res.json)
+        );
+    }
+
+    saveBasicInfo() {
+
     }
 
     ngOnDestroy(): void {

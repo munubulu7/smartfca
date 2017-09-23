@@ -14,6 +14,8 @@ import {AddressInformation} from "../address-information/address-information.mod
 import {ActivatedRoute, Router} from "@angular/router";
 import {AddressInformationService} from "../address-information/address-information.service";
 import {RegistrationInformation} from "../registration-information/registration-information.model";
+import {AddressType} from "../address-type/address-type.model";
+import {AddressTypeService} from "../address-type/address-type.service";
 
 @Component({
     selector: 'crm-new-address',
@@ -39,6 +41,7 @@ export class CrmNewAddressComponent implements OnInit, OnDestroy {
     stateList: State[];
     districtList: CityDistrictTown[];
     areaTypeList: AreaType[];
+    addressTypeList: AddressType[];
     areaList: AreaName[];
     policeStationList: PoliceStation[];
     postOfficeList: PostOffice[];
@@ -51,6 +54,7 @@ export class CrmNewAddressComponent implements OnInit, OnDestroy {
                 private router: Router,
                 private eventManager: JhiEventManager,
                 private addressInformationService: AddressInformationService,
+                private addressTypeService: AddressTypeService,
                 private crmService: CrmService) {
     }
 
@@ -58,6 +62,13 @@ export class CrmNewAddressComponent implements OnInit, OnDestroy {
         if(!this.addressInfo){
             this.addressInfo = new AddressInformation;
         }
+        this.addressTypeService.query().subscribe(
+            (res: ResponseWrapper) => {
+                this.addressTypeList = res.json;
+            },
+            (res: ResponseWrapper) => this.onError(res.json)
+        );
+
         this.routeSub = this.route.params.subscribe((params) => {
             if ( params['id'] ) {
                 this.addressInformationService.find(params['id']).subscribe(

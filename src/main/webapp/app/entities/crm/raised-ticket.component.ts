@@ -19,10 +19,9 @@ import {CrmService} from "./crm.service";
     ]
 })
 export class RaisedTicketComponent implements OnInit {
-    private ticket: Ticket;
-    private registrationInformationList: RegistrationInformation[];
-    private ticketStatusList: TicketStatus[];
-    private ticketNumber: String;
+    ticket: Ticket;
+    registrationInformationList: RegistrationInformation[];
+    ticketStatusList: TicketStatus[];
 
     constructor(private alertService: JhiAlertService,
                 private eventManager: JhiEventManager,
@@ -75,7 +74,7 @@ export class RaisedTicketComponent implements OnInit {
         this.alertService.error(error, null, null);
     }
 
-    private createTicket() {
+    createTicket() {
         this.ticketService.create(this.ticket).subscribe(
             (res: Ticket) => {
                 this.eventManager.broadcast({name: 'ticketListModification', content: 'OK'});

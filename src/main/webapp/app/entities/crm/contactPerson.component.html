@@ -10,8 +10,8 @@
             <label class="cus-form-label">Contact Person</label>
             <div class="row clearfix">
                 <div class="col-sm-3">
-                    <select class="form-control" [(ngModel)]="contactPerson.persons.salutation.id">
-                        <option *ngFor="let salutation of salutationList" [ngValue]="salutation.id">{{salutation.name}}
+                    <select class="form-control" [(ngModel)]="contactPerson.persons.salutation">
+                        <option *ngFor="let salutation of salutationList" [ngValue]="salutation">{{salutation.name}}
                         </option>
                     </select>
                 </div>
@@ -37,8 +37,8 @@
     <div class="col-sm-2">
         <div class="form-group">
             <label class="cus-form-label">Designation</label>
-            <select class="form-control" [(ngModel)]="contactPerson.designation.id">
-                <option *ngFor="let designation of designationList" [ngValue]="designation.id">{{designation.name}}
+            <select class="form-control" [(ngModel)]="contactPerson.designation">
+                <option *ngFor="let designation of designationList" [ngValue]="designation">{{designation.name}}
                 </option>
             </select>
         </div>
