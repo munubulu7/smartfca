@@ -90,4 +90,19 @@ public class CrmService {
         q.setParameter("regId", regId);
         return q.getResultList();
     }
+
+    public List<ContactPerson> getContactPersonByBasicInformationId(long basicInfoId) {
+        TypedQuery<ContactPerson> q = em.createQuery("select c from ContactPerson c where c.basicInformation.id=:basicInfoId", ContactPerson.class);
+        q.setParameter("basicInfoId", basicInfoId);
+        return q.getResultList();
+    }
+
+    public String genarateTicketNumber(){
+        TypedQuery<Ticket> q = em.createQuery("select c from Ticket c order by c.id DESC", Ticket.class);
+        if (q.getResultList().size()<=0) {
+            return "1";
+        } else {
+            return String.valueOf(Integer.parseInt(q.getResultList().get(0).getTicketNo() == null ? "0" : q.getResultList().get(0).getTicketNo()) + 1);
+        }
+    }
 }

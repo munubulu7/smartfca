@@ -3,7 +3,7 @@ package com.sys.org.web.rest;
 import com.codahale.metrics.annotation.Timed;
 import com.sys.org.domain.*;
 import com.sys.org.service.CrmService;
-import com.sys.org.utility.common.Utility;
+import com.sys.org.service.utility.common.Utility;
 import com.sys.org.web.rest.util.HeaderUtil;
 import com.twilio.twiml.Say;
 import com.twilio.twiml.TwiMLException;
@@ -17,6 +17,8 @@ import org.springframework.web.bind.annotation.*;
 
 import java.net.URI;
 import java.net.URISyntaxException;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.List;
 
 @RestController
@@ -116,6 +118,27 @@ public class CrmResource {
     public List<BasicInformation> getBasicInformationByRegId(@PathVariable(name = "id") long regId) {
         log.debug("REST request to get all Basic information of Registration information");
         return crmService.getBasicInformationByRegId(regId);
+    }
+
+    @GetMapping("/conct-person/basic-info/{id}")
+    @Timed
+    public List<ContactPerson> getContactPersonByBasicInformationId(@PathVariable(name = "id") long basicInfoId) {
+        log.debug("REST request to get all Contact person of Basic information");
+        return crmService.getContactPersonByBasicInformationId(basicInfoId);
+    }
+
+    @GetMapping("/genarate-ticket-no")
+    @Timed
+    public String genarateTicketNumber() {
+        log.debug("REST request to get to generate new ticket number.");
+        return crmService.genarateTicketNumber();
+    }
+
+    @GetMapping(value = "/current-date-time",produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
+    @Timed
+    public LocalDateTime getCurrentDateTime() {
+        log.debug("REST request to get to current server date time");
+        return LocalDateTime.now();
     }
 
     @PostMapping(value = "twilio", produces = MediaType.APPLICATION_XML_VALUE)

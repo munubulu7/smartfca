@@ -68,6 +68,23 @@ export class CrmService {
             .map((res: Response) => this.convertResponse(res));
     }
 
+    public getContactPersonByBasicInformationId(id:Number): Observable<ResponseWrapper> {
+        return this.http.get(`${this.resourceUrl}conct-person/basic-info/${id}`)
+            .map((res: Response) => this.convertResponse(res));
+    }
+
+    genarateTicketNumber(): Observable<String> {
+        return this.http.get(`${this.resourceUrl}genarate-ticket-no`).map((res: Response) => {
+            return res.json();
+        });
+    }
+
+    getCurrentDateTime(): Observable<string> {
+        return this.http.get(`${this.resourceUrl}current-date-time`).map((res: Response) => {
+            return res.json();
+        });
+    }
+
     private convertResponse(res: Response): ResponseWrapper {
         const jsonResponse = res.json();
         return new ResponseWrapper(res.headers, jsonResponse, res.status);

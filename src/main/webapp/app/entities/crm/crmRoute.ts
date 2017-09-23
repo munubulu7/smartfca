@@ -5,6 +5,7 @@ import {CrmComponent} from "./crm.component";
 import {CrmAddressComponent} from "./crm-address.component";
 import {CrmNewAddressComponent} from "./crm-new-address.component";
 import {CrmBasicInformationComponent} from "./crm-basic-information.component";
+import {RaisedTicketComponent} from "./raised-ticket.component";
 
 export const crmPopupRoute: Routes = [
     {
@@ -49,6 +50,15 @@ export const crmPopupRoute: Routes = [
         data: {
             authorities: ['ROLE_USER'],
             pageTitle: 'Customers Relationship Model'
+        },
+        canActivate: [UserRouteAccessService]
+    },
+    {
+        path: 'new-ticket',
+        component: RaisedTicketComponent,
+        data: {
+            authorities: ['ROLE_USER'],
+            pageTitle: 'Raised a Ticket for Customer'
         },
         canActivate: [UserRouteAccessService]
     }

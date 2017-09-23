@@ -1,4 +1,4 @@
-package com.sys.org.utility.twilio;
+package com.sys.org.service.utility.twilio;
 
 import com.twilio.http.TwilioRestClient;
 import com.twilio.rest.api.v2010.account.Call;
@@ -9,10 +9,6 @@ import java.net.URI;
 public class TicketGenarator {
     public static final String ACCOUNT_SID = "AC5be9a3a42034045818d041f1e029e07e";
     public static final String AUTH_TOKEN = "a5cc80e0699c3871671e9b08b5934968";
-
-    public void genaratesTicket(){
-
-    }
 
     public static void main(String[] args) {
 

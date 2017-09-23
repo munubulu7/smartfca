@@ -1,5 +1,6 @@
 package com.sys.org.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
 
@@ -62,6 +63,7 @@ public class BasicInformation implements Serializable {
 
     @OneToMany(mappedBy = "basicInformation")
     @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
+    @JsonIgnore
     private Set<ContactPerson> contactPersons = new HashSet<>();
 
     @ManyToOne

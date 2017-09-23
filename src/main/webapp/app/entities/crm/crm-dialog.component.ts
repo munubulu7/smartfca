@@ -215,6 +215,12 @@ export class CrmDialogComponent implements OnInit {
             },
             (res: ResponseWrapper) => this.onError(res.json)
         );
+        this.crmService.getCurrentDateTime().subscribe(
+            (res: string) => {
+                this.regInfo.registrationDate = res;
+            },
+            (res: ResponseWrapper) => this.onError(res.json)
+        );
 
     }
 

@@ -80,14 +80,20 @@ export class CrmBasicInformationComponent implements OnInit, OnDestroy {
                     this.basicInformation = res.json;
                     this.businessBasicInfo = this.basicInformation[0];
                     this.personalBasicInfo = this.basicInformation[0];
-                    debugger;
-                    this.businessBasicInfo.contactPersons.map((item)=>{
-                        let sampleContactPerson = new CrmContactPerson();
-                        sampleContactPerson.persons = new Person;
-                        sampleContactPerson.contactInfoList = [];
-                        sampleContactPerson.contactInfoList.push(new ContactInfo());
-                        this.contactPersonFromGroup.push(sampleContactPerson);
-                    });
+                    this.crmService.getContactPersonByBasicInformationId(this.businessBasicInfo.id).subscribe(
+                        (contRes: ResponseWrapper)=>{
+                            contRes.json.map((item)=>{
+                                let sampleContactPerson = new CrmContactPerson();
+                                sampleContactPerson.persons = item.persons;
+                                sampleContactPerson.designation = item.designation;
+                                sampleContactPerson.contactInfoList = [];
+                                sampleContactPerson.contactInfoList.push(new ContactInfo());
+                                this.contactPersonFromGroup.push(sampleContactPerson);
+                                debugger;
+                            });
+                        },
+                        (contRes: ResponseWrapper) => this.onError(contRes.json)
+                    );
                 },
                 (res: ResponseWrapper) => this.onError(res.json)
             )

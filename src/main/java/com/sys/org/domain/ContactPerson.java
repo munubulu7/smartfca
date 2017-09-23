@@ -7,8 +7,8 @@ import org.hibernate.annotations.CacheConcurrencyStrategy;
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.HashSet;
-import java.util.Set;
 import java.util.Objects;
+import java.util.Set;
 
 /**
  * A ContactPerson.
@@ -36,7 +36,6 @@ public class ContactPerson implements Serializable {
     private Person persons;
 
     @OneToMany(mappedBy = "contactPerson")
-    @JsonIgnore
     @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
     private Set<ContactInfo> contactInfos = new HashSet<>();
 
