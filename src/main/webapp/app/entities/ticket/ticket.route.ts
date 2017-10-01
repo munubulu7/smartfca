@@ -1,15 +1,11 @@
-import { Injectable } from '@angular/core';
-import { Resolve, ActivatedRouteSnapshot, RouterStateSnapshot, Routes, CanActivate } from '@angular/router';
+import {Routes} from '@angular/router';
 
-import { UserRouteAccessService } from '../../shared';
-import { JhiPaginationUtil } from 'ng-jhipster';
+import {UserRouteAccessService} from '../../shared';
 
-import { TicketComponent } from './ticket.component';
-import { TicketDetailComponent } from './ticket-detail.component';
-import { TicketPopupComponent } from './ticket-dialog.component';
-import { TicketDeletePopupComponent } from './ticket-delete-dialog.component';
-
-import { Principal } from '../../shared';
+import {TicketComponent} from './ticket.component';
+import {TicketDetailComponent} from './ticket-detail.component';
+import {TicketPopupComponent} from './ticket-dialog.component';
+import {TicketDeletePopupComponent} from './ticket-delete-dialog.component';
 
 export const ticketRoute: Routes = [
     {

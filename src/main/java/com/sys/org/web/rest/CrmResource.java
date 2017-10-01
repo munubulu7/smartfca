@@ -18,7 +18,6 @@ import org.springframework.web.bind.annotation.*;
 import java.net.URI;
 import java.net.URISyntaxException;
 import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
 import java.util.List;
 
 @RestController
@@ -134,7 +133,13 @@ public class CrmResource {
         return crmService.genarateTicketNumber();
     }
 
-    @GetMapping(value = "/current-date-time",produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
+    @GetMapping("/tickets")
+    @Timed
+    public List<Ticket> getAllTickets(@RequestParam("startIndex") int startIndex, @RequestParam("limit") int limit, @RequestParam("ticketStatusId") Long ticketStatusId) {
+        return crmService.getAllTickets(startIndex, limit, ticketStatusId);
+    }
+
+    @GetMapping(value = "/current-date-time", produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
     @Timed
     public LocalDateTime getCurrentDateTime() {
         log.debug("REST request to get to current server date time");

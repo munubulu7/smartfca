@@ -11,6 +11,8 @@ import {CrmNewAddressComponent} from "./crm-new-address.component";
 import {ContactInfoComponent} from "./contact-info.component";
 import {CrmBasicInformationComponent} from "./crm-basic-information.component";
 import {RaisedTicketComponent} from "./raised-ticket.component";
+import {TicketComponent} from "./ticket.component";
+import {TicketStatusUpdateComponent} from "./ticket-status-update.component";
 
 const ENTITY_STATES = [
     ...crmPopupRoute,
@@ -30,7 +32,9 @@ const ENTITY_STATES = [
         CrmNewAddressComponent,
         ContactInfoComponent,
         CrmBasicInformationComponent,
-        RaisedTicketComponent
+        RaisedTicketComponent,
+        TicketComponent,
+        TicketStatusUpdateComponent
     ],
     entryComponents: [
         CrmComponent,

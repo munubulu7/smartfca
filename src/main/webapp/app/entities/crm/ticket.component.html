@@ -1,0 +1,78 @@
+<div>
+    <h2>
+        <span>Ticket</span>
+        <button class="btn btn-primary float-right create-person" [routerLink]="['/new-ticket']">
+            <span class="fa fa-plus"></span>
+            <span>
+            Create new Ticket
+            </span>
+        </button>
+    </h2>
+    <jhi-alert></jhi-alert>
+    <div class="row">
+    </div>
+    <br/>
+    <div class="table-responsive" *ngIf="tickets">
+        <div class="col-md-3">
+            <label for="select-status">Select Status:</label>
+            <select class="form-control" id="select-status" [(ngModel)]="selectedTicketStatusId" (change)="populateTicketList()">
+                <option [ngValue]="0">All</option>
+                <option [ngValue]="ticketStatus.id" *ngFor="let ticketStatus of ticketStatusList">
+                    {{ticketStatus.status}}
+                </option>
+            </select>
+        </div>
+        <table class="table table-striped">
+            <thead>
+            <tr>
+                <th><span>Ticket No</span></th>
+                <th><span>Title</span></th>
+                <th><span>Description</span></th>
+                <th><span>Note</span></th>
+                <th><span>Created Date</span></th>
+                <th><span>Resolv Date</span></th>
+                <th><span>Registration Information</span></th>
+                <th><span>Ticket Status</span></th>
+                <th></th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr *ngFor="let ticket of tickets">
+                <td><a [routerLink]="['../ticket', ticket.id ]">{{ticket.ticketNo}}</a></td>
+                <td>{{ticket.title}}</td>
+                <td>{{ticket.description}}</td>
+                <td>{{ticket.note}}</td>
+                <td>{{ticket.createdDate | date:'medium'}}</td>
+                <td>{{ticket.resolvDate | date:'medium'}}</td>
+                <td>
+                    <div *ngIf="ticket.registrationInformation">
+                        <a [routerLink]="['../registration-information', ticket.registrationInformation?.id ]">{{ticket.registrationInformation?.id}}</a>
+                    </div>
+                </td>
+                <td>
+                    <div *ngIf="ticket.ticketStatus">
+                        {{ticket.ticketStatus?.status}}
+                    </div>
+                </td>
+                <td class="text-right">
+                    <div class="btn-group flex-btn-group-container">
+                        <button type="submit"
+                                [routerLink]="['../ticket', ticket.id ]"
+                                class="btn btn-info btn-sm">
+                            <span class="fa fa-eye"></span>
+                            <span class="hidden-md-down">View</span>
+                        </button>
+                        <button type="button"
+                                [routerLink]="['../update-ticket-status/'+ ticket.id]"
+                                replaceUrl="true"
+                                class="btn btn-primary btn-sm">
+                            <span class="fa fa-pencil"></span>
+                            <span class="hidden-md-down">Edit</span>
+                        </button>
+                    </div>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

@@ -1,4 +1,5 @@
 import { BaseEntity } from './../../shared';
+import {TicketStatus} from "../ticket-status/ticket-status.model";
 
 export class Ticket implements BaseEntity {
     constructor(
@@ -10,7 +11,7 @@ export class Ticket implements BaseEntity {
         public createdDate?: any,
         public resolvDate?: any,
         public registrationInformation?: BaseEntity,
-        public ticketStatus?: BaseEntity,
+        public ticketStatus?: TicketStatus,
     ) {
     }
 }

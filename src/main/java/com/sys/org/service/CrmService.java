@@ -97,12 +97,22 @@ public class CrmService {
         return q.getResultList();
     }
 
-    public String genarateTicketNumber(){
+    public String genarateTicketNumber() {
         TypedQuery<Ticket> q = em.createQuery("select c from Ticket c order by c.id DESC", Ticket.class);
-        if (q.getResultList().size()<=0) {
+        if (q.getResultList().size() <= 0) {
             return "1";
         } else {
             return String.valueOf(Integer.parseInt(q.getResultList().get(0).getTicketNo() == null ? "0" : q.getResultList().get(0).getTicketNo()) + 1);
         }
+    }
+
+    public List<Ticket> getAllTickets(int startIndex, int limit, Long ticketStatusId) {
+        String jpql = ticketStatusId == 0 ? "select c from Ticket c" : "select c from Ticket c where c.ticketStatus.id=:ticketStatusId";
+        TypedQuery<Ticket> q = em.createQuery(jpql, Ticket.class);
+        if (ticketStatusId != 0) {
+            q.setParameter("ticketStatusId", ticketStatusId);
+        }
+//        return q.setFirstResult(startIndex).setMaxResults(limit).getResultList();
+        return q.getResultList();
     }
 }

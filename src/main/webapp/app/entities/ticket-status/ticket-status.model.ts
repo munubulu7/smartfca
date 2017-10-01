@@ -7,4 +7,9 @@ export class TicketStatus implements BaseEntity {
         public tickets?: BaseEntity[],
     ) {
     }
+
+    // public valueOf():Object{
+    //     debugger;
+    //     return this.id;
+    // }
 }
