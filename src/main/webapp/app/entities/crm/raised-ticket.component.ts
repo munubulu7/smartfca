@@ -8,6 +8,8 @@ import {TicketStatus} from "../ticket-status/ticket-status.model";
 import {TicketStatusService} from "../ticket-status/ticket-status.service";
 import {TicketService} from "../ticket/ticket.service";
 import {CrmService} from "./crm.service";
+import {Principal} from "../../shared/auth/principal.service";
+import {User} from "../../shared/user/user.model";
 
 @Component({
     selector: 'new-ticket',
@@ -22,13 +24,16 @@ export class RaisedTicketComponent implements OnInit {
     ticket: Ticket;
     registrationInformationList: RegistrationInformation[];
     ticketStatusList: TicketStatus[];
+    userList: Account[];
+    account: Account;
 
     constructor(private alertService: JhiAlertService,
                 private eventManager: JhiEventManager,
                 private crmService: CrmService,
                 private registrationInformationService: RegistrationInformationService,
                 private ticketService: TicketService,
-                private ticketStatusService: TicketStatusService) {
+                private ticketStatusService: TicketStatusService,
+                private principal: Principal) {
     }
 
     private reset(): void {
@@ -57,6 +62,17 @@ export class RaisedTicketComponent implements OnInit {
             },
             (res: ResponseWrapper) => this.onError(res.json)
         );
+        this.crmService.getAllUSers().subscribe(
+            (res: ResponseWrapper) => {
+                this.userList=res.json;
+            },
+            (res: ResponseWrapper) => {
+                (res: ResponseWrapper) => this.onError(res.json);
+            }
+        );
+        this.principal.identity().then((account) => {
+            this.account = account;
+        });
     }
 
     generateTicketNumber() {
@@ -75,6 +91,7 @@ export class RaisedTicketComponent implements OnInit {
     }
 
     createTicket() {
+        this.ticket.ticketGenerator = new User(this.account.id);
         this.ticketService.create(this.ticket).subscribe(
             (res: Ticket) => {
                 this.eventManager.broadcast({name: 'ticketListModification', content: 'OK'});

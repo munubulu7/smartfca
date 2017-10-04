@@ -8,6 +8,7 @@ import {TicketStatusService} from "../ticket-status/ticket-status.service";
 import {ResponseWrapper} from "../../shared/model/response-wrapper.model";
 import {DatePipe} from "@angular/common";
 import {CrmService} from "./crm.service";
+import {User} from "../../shared/user/user.model";
 
 @Component({
     selector: 'ticket-status-update',
@@ -17,6 +18,7 @@ export class TicketStatusUpdateComponent implements OnInit, OnDestroy {
     routeSub: any;
     ticket: Ticket = new Ticket;
     ticketStatusList: TicketStatus[];
+    userList: User[];
 
     constructor(private alertService: JhiAlertService,
                 private datePipe: DatePipe,
@@ -44,6 +46,14 @@ export class TicketStatusUpdateComponent implements OnInit, OnDestroy {
                 this.ticketStatusList = res.json;
             },
             (res: ResponseWrapper) => this.onError(res.json)
+        );
+        this.crmService.getAllUSers().subscribe(
+            (res: ResponseWrapper) => {
+                this.userList=res.json;
+            },
+            (res: ResponseWrapper) => {
+                (res: ResponseWrapper) => this.onError(res.json);
+            }
         );
     }
 

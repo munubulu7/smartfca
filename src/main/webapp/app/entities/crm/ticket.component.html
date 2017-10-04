@@ -33,6 +33,8 @@
                 <th><span>Resolv Date</span></th>
                 <th><span>Registration Information</span></th>
                 <th><span>Ticket Status</span></th>
+                <th><span>Ticket Generator</span></th>
+                <th><span>Ticket Assignee</span></th>
                 <th></th>
             </tr>
             </thead>
@@ -53,6 +55,12 @@
                     <div *ngIf="ticket.ticketStatus">
                         {{ticket.ticketStatus?.status}}
                     </div>
+                </td>
+                <td>
+                    {{ticket.ticketGenerator?.login}}
+                </td>
+                <td>
+                    {{ticket.ticketAssignee?.login}}
                 </td>
                 <td class="text-right">
                     <div class="btn-group flex-btn-group-container">

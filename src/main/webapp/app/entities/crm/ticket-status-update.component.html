@@ -50,6 +50,15 @@
                     </div>
                 </div>
                 <div class="col-sm-3">
+                    <label for="ticket-assgnee">Ticket Assignee Name:</label>
+                    <select class="form-control" id="ticket-assgnee" name="ticketStatus"
+                            [(ngModel)]="ticket.ticketAssignee==null?'':ticket.ticketAssignee">
+                        <option [ngValue]="user" *ngFor="let user of userList">
+                            {{user.firstName}} {{user.lastName}}
+                        </option>
+                    </select>
+                </div>
+                <div class="col-sm-3">
                     <label for="field_ticketStatus">Ticket Status</label>
                     <select class="form-control" id="field_ticketStatus" name="ticketStatus"
                             [(ngModel)]="ticket.ticketStatus==null?'':ticket.ticketStatus">
