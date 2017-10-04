@@ -1,4 +1,4 @@
-import { BaseEntity } from './../../shared';
+import { BaseEntity, User } from './../../shared';
 import {TicketStatus} from "../ticket-status/ticket-status.model";
 
 export class Ticket implements BaseEntity {
@@ -12,6 +12,8 @@ export class Ticket implements BaseEntity {
         public resolvDate?: any,
         public registrationInformation?: BaseEntity,
         public ticketStatus?: TicketStatus,
+        public ticketGenerator?: User,
+        public ticketAssignee?: User,
     ) {
     }
 }

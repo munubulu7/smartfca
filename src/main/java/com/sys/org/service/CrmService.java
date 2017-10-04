@@ -115,4 +115,9 @@ public class CrmService {
 //        return q.setFirstResult(startIndex).setMaxResults(limit).getResultList();
         return q.getResultList();
     }
+
+    public List<User> getAllUser(){
+        TypedQuery<User> q = em.createQuery("select c from User c", User.class);
+        return q.getResultList();
+    }
 }

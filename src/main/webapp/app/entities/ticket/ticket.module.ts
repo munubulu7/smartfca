@@ -2,6 +2,7 @@ import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { RouterModule } from '@angular/router';
 
 import { Smartfca001SharedModule } from '../../shared';
+import { Smartfca001AdminModule } from '../../admin/admin.module';
 import {
     TicketService,
     TicketPopupService,
@@ -23,6 +24,7 @@ const ENTITY_STATES = [
 @NgModule({
     imports: [
         Smartfca001SharedModule,
+        Smartfca001AdminModule,
         RouterModule.forRoot(ENTITY_STATES, { useHash: true })
     ],
     declarations: [

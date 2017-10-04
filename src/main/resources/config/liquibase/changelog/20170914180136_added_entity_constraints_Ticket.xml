@@ -20,5 +20,17 @@
                                  referencedColumnNames="id"
                                  referencedTableName="ticket_status"/>
 
+        <addForeignKeyConstraint baseColumnNames="ticket_generator_id"
+                                 baseTableName="ticket"
+                                 constraintName="fk_ticket_ticket_generator_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="jhi_user"/>
+
+        <addForeignKeyConstraint baseColumnNames="ticket_assignee_id"
+                                 baseTableName="ticket"
+                                 constraintName="fk_ticket_ticket_assignee_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="jhi_user"/>
+
     </changeSet>
 </databaseChangeLog>

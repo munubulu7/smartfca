@@ -11,6 +11,7 @@ import { TicketPopupService } from './ticket-popup.service';
 import { TicketService } from './ticket.service';
 import { RegistrationInformation, RegistrationInformationService } from '../registration-information';
 import { TicketStatus, TicketStatusService } from '../ticket-status';
+import { User, UserService } from '../../shared';
 import { ResponseWrapper } from '../../shared';
 
 @Component({
@@ -27,12 +28,15 @@ export class TicketDialogComponent implements OnInit {
 
     ticketstatuses: TicketStatus[];
 
+    users: User[];
+
     constructor(
         public activeModal: NgbActiveModal,
         private alertService: JhiAlertService,
         private ticketService: TicketService,
         private registrationInformationService: RegistrationInformationService,
         private ticketStatusService: TicketStatusService,
+        private userService: UserService,
         private eventManager: JhiEventManager
     ) {
     }
@@ -44,6 +48,8 @@ export class TicketDialogComponent implements OnInit {
             .subscribe((res: ResponseWrapper) => { this.registrationinformations = res.json; }, (res: ResponseWrapper) => this.onError(res.json));
         this.ticketStatusService.query()
             .subscribe((res: ResponseWrapper) => { this.ticketstatuses = res.json; }, (res: ResponseWrapper) => this.onError(res.json));
+        this.userService.query()
+            .subscribe((res: ResponseWrapper) => { this.users = res.json; }, (res: ResponseWrapper) => this.onError(res.json));
     }
 
     clear() {
@@ -91,6 +97,10 @@ export class TicketDialogComponent implements OnInit {
     }
 
     trackTicketStatusById(index: number, item: TicketStatus) {
+        return item.id;
+    }
+
+    trackUserById(index: number, item: User) {
         return item.id;
     }
 }

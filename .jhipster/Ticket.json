@@ -12,6 +12,22 @@
             "otherEntityName": "ticketStatus",
             "relationshipType": "many-to-one",
             "otherEntityField": "id"
+        },
+        {
+            "relationshipName": "ticketGenerator",
+            "otherEntityName": "user",
+            "relationshipType": "many-to-one",
+            "otherEntityField": "login",
+            "ownerSide": true,
+            "otherEntityRelationshipName": "ticket"
+        },
+        {
+            "relationshipName": "ticketAssignee",
+            "otherEntityName": "user",
+            "relationshipType": "many-to-one",
+            "otherEntityField": "login",
+            "ownerSide": true,
+            "otherEntityRelationshipName": "ticket"
         }
     ],
     "fields": [
@@ -41,8 +57,8 @@
         }
     ],
     "changelogDate": "20170914180136",
-    "entityTableName": "ticket",
     "dto": "no",
-    "pagination": "no",
-    "service": "no"
+    "service": "no",
+    "entityTableName": "ticket",
+    "pagination": "no"
 }

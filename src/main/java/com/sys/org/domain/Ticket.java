@@ -19,7 +19,7 @@ public class Ticket implements Serializable {
     private static final long serialVersionUID = 1L;
 
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     @Column(name = "ticket_no")
@@ -45,6 +45,12 @@ public class Ticket implements Serializable {
 
     @ManyToOne
     private TicketStatus ticketStatus;
+
+    @ManyToOne
+    private User ticketGenerator;
+
+    @ManyToOne
+    private User ticketAssignee;
 
     public Long getId() {
         return id;
@@ -156,6 +162,32 @@ public class Ticket implements Serializable {
 
     public void setTicketStatus(TicketStatus ticketStatus) {
         this.ticketStatus = ticketStatus;
+    }
+
+    public User getTicketGenerator() {
+        return ticketGenerator;
+    }
+
+    public Ticket ticketGenerator(User user) {
+        this.ticketGenerator = user;
+        return this;
+    }
+
+    public void setTicketGenerator(User user) {
+        this.ticketGenerator = user;
+    }
+
+    public User getTicketAssignee() {
+        return ticketAssignee;
+    }
+
+    public Ticket ticketAssignee(User user) {
+        this.ticketAssignee = user;
+        return this;
+    }
+
+    public void setTicketAssignee(User user) {
+        this.ticketAssignee = user;
     }
 
     @Override

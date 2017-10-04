@@ -54,6 +54,14 @@
                 <constraints nullable="true" />
             </column>
 
+            <column name="ticket_generator_id" type="bigint">
+                <constraints nullable="true" />
+            </column>
+
+            <column name="ticket_assignee_id" type="bigint">
+                <constraints nullable="true" />
+            </column>
+
             <!-- jhipster-needle-liquibase-add-column - JHipster will add columns here, do not remove-->
         </createTable>
         <dropDefaultValue tableName="ticket" columnName="created_date" columnDataType="datetime"/>

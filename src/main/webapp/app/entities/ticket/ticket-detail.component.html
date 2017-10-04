@@ -40,6 +40,14 @@
                 <a [routerLink]="['/ticket-status', ticket.ticketStatus?.id]">{{ticket.ticketStatus?.id}}</a>
             </div>
         </dd>
+        <dt><span>Ticket Generator</span></dt>
+        <dd>
+            {{ticket.ticketGenerator?.login}}
+        </dd>
+        <dt><span>Ticket Assignee</span></dt>
+        <dd>
+            {{ticket.ticketAssignee?.login}}
+        </dd>
     </dl>
 
     <button type="submit"

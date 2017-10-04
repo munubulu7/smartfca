@@ -19,7 +19,7 @@ import {
 @NgModule({
     imports: [
         Smartfca001SharedLibsModule,
-        Smartfca001SharedCommonModule
+        Smartfca001SharedCommonModule,
     ],
     declarations: [
         JhiLoginModalComponent,

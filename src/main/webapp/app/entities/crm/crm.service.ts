@@ -83,6 +83,11 @@ export class CrmService {
             .map((res: Response) => this.convertResponse(res));
     }
 
+    public getAllUSers(): Observable<ResponseWrapper> {
+        return this.http.get(`${this.resourceUrl}users`)
+            .map((res: Response) => this.convertResponse(res));
+    }
+
     genarateTicketNumber(): Observable<String> {
         return this.http.get(`${this.resourceUrl}genarate-ticket-no`).map((res: Response) => {
             return res.json();

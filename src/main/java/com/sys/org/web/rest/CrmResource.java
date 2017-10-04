@@ -139,6 +139,12 @@ public class CrmResource {
         return crmService.getAllTickets(startIndex, limit, ticketStatusId);
     }
 
+    @GetMapping("/users")
+    @Timed
+    public List<User> getAllUsers() {
+        return crmService.getAllUser();
+    }
+
     @GetMapping(value = "/current-date-time", produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
     @Timed
     public LocalDateTime getCurrentDateTime() {
