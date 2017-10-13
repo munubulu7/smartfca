@@ -16,6 +16,8 @@ import {AddressInformationService} from "../address-information/address-informat
 import {RegistrationInformation} from "../registration-information/registration-information.model";
 import {AddressType} from "../address-type/address-type.model";
 import {AddressTypeService} from "../address-type/address-type.service";
+import {AddressForService} from "../address-for/address-for.service";
+import {AddressFor} from "../address-for/address-for.model";
 
 @Component({
     selector: 'crm-new-address',
@@ -47,6 +49,8 @@ export class CrmNewAddressComponent implements OnInit, OnDestroy {
     postOfficeList: PostOffice[];
     villageList: PremisesBuildingVillage[];
     pincodeList: Pincode[];
+    addressForList: AddressFor[];
+    selectedAddressFor: AddressFor[];
     routeSub: any;
 
     constructor(private alertService: JhiAlertService,
@@ -55,6 +59,7 @@ export class CrmNewAddressComponent implements OnInit, OnDestroy {
                 private eventManager: JhiEventManager,
                 private addressInformationService: AddressInformationService,
                 private addressTypeService: AddressTypeService,
+                private addressForService: AddressForService,
                 private crmService: CrmService) {
     }
 
@@ -65,6 +70,13 @@ export class CrmNewAddressComponent implements OnInit, OnDestroy {
         this.addressTypeService.query().subscribe(
             (res: ResponseWrapper) => {
                 this.addressTypeList = res.json;
+            },
+            (res: ResponseWrapper) => this.onError(res.json)
+        );
+
+        this.addressForService.query().subscribe(
+            (res: ResponseWrapper) => {
+                this.addressForList = res.json;
             },
             (res: ResponseWrapper) => this.onError(res.json)
         );
@@ -136,6 +148,17 @@ export class CrmNewAddressComponent implements OnInit, OnDestroy {
             },
             (res: ResponseWrapper) => this.onError(res.json)
         );
+    }
+
+    getSelected(selectedVals: Array<any>, option: any) {
+        if (selectedVals) {
+            for (let i = 0; i < selectedVals.length; i++) {
+                if (option.id === selectedVals[i].id) {
+                    return selectedVals[i];
+                }
+            }
+        }
+        return option;
     }
 
     submit(){

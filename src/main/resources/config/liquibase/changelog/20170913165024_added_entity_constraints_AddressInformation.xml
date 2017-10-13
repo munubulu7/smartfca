@@ -32,5 +32,16 @@
                                  referencedColumnNames="id"
                                  referencedTableName="pincode"/>
 
+        <addForeignKeyConstraint baseColumnNames="address_informations_id"
+                                 baseTableName="address_information_address_for"
+                                 constraintName="fk_address_information_address_for_address_informations_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="address_information"/>
+        <addForeignKeyConstraint baseColumnNames="address_fors_id"
+                                 baseTableName="address_information_address_for"
+                                 constraintName="fk_address_information_address_for_address_fors_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="address_for"/>
+        
     </changeSet>
 </databaseChangeLog>

@@ -32,6 +32,12 @@
                 <a [routerLink]="['/pincode', addressInformation.pincode?.id]">{{addressInformation.pincode?.id}}</a>
             </div>
         </dd>
+        <dt><span>Address For</span></dt>
+        <dd>
+            <span *ngFor="let addressFor of addressInformation.addressFors; let last = last">
+                <a [routerLink]="['/address-for', addressFor?.id ]">{{addressFor.id}}</a>{{last ? '' : ', '}}
+            </span>
+        </dd>
     </dl>
 
     <button type="submit"

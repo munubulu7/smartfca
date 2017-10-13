@@ -45,5 +45,16 @@
             <!-- jhipster-needle-liquibase-add-column - JHipster will add columns here, do not remove-->
         </createTable>
         
+        <createTable tableName="address_information_address_for">
+            <column name="address_fors_id" type="bigint">
+                <constraints nullable="false"/>
+            </column>
+            <column name="address_informations_id" type="bigint">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+
+        <addPrimaryKey columnNames="address_informations_id, address_fors_id" tableName="address_information_address_for"/>
+        
     </changeSet>
 </databaseChangeLog>

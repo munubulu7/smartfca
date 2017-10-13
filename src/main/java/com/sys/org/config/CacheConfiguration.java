@@ -101,6 +101,7 @@ public class CacheConfiguration {
             cm.createCache(com.sys.org.domain.TicketStatus.class.getName(), jcacheConfiguration);
             cm.createCache(com.sys.org.domain.TicketStatus.class.getName() + ".tickets", jcacheConfiguration);
             cm.createCache(com.sys.org.domain.ConfigParameter.class.getName(), jcacheConfiguration);
+            cm.createCache(com.sys.org.domain.AddressInformation.class.getName() + ".addressFors", jcacheConfiguration);
             // jhipster-needle-ehcache-add-entry
         };
     }

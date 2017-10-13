@@ -113,6 +113,17 @@ export class AddressInformationDialogComponent implements OnInit {
     trackPincodeById(index: number, item: Pincode) {
         return item.id;
     }
+
+    getSelected(selectedVals: Array<any>, option: any) {
+        if (selectedVals) {
+            for (let i = 0; i < selectedVals.length; i++) {
+                if (option.id === selectedVals[i].id) {
+                    return selectedVals[i];
+                }
+            }
+        }
+        return option;
+    }
 }
 
 @Component({

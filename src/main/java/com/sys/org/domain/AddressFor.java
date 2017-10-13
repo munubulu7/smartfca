@@ -1,13 +1,10 @@
 package com.sys.org.domain;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
 
 import javax.persistence.*;
 import java.io.Serializable;
-import java.util.HashSet;
-import java.util.Set;
 import java.util.Objects;
 
 /**
@@ -21,16 +18,11 @@ public class AddressFor implements Serializable {
     private static final long serialVersionUID = 1L;
 
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     @Column(name = "name")
     private String name;
-
-    @OneToMany(mappedBy = "addressFor")
-    @JsonIgnore
-    @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
-    private Set<AddressInformation> addressInfos = new HashSet<>();
 
     public Long getId() {
         return id;
@@ -51,31 +43,6 @@ public class AddressFor implements Serializable {
 
     public void setName(String name) {
         this.name = name;
-    }
-
-    public Set<AddressInformation> getAddressInfos() {
-        return addressInfos;
-    }
-
-    public AddressFor addressInfos(Set<AddressInformation> addressInformations) {
-        this.addressInfos = addressInformations;
-        return this;
-    }
-
-    public AddressFor addAddressInfos(AddressInformation addressInformation) {
-        this.addressInfos.add(addressInformation);
-        addressInformation.setAddressFor(this);
-        return this;
-    }
-
-    public AddressFor removeAddressInfos(AddressInformation addressInformation) {
-        this.addressInfos.remove(addressInformation);
-        addressInformation.setAddressFor(null);
-        return this;
-    }
-
-    public void setAddressInfos(Set<AddressInformation> addressInformations) {
-        this.addressInfos = addressInformations;
     }
 
     @Override

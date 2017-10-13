@@ -40,7 +40,9 @@
                 </td>
                 <td>
                     <div *ngIf="addressInformation.addressFor">
-                        <a [routerLink]="['../address-for', addressInformation.addressFor?.id ]">{{addressInformation.addressFor?.id}}</a>
+                        <span *ngFor="let addressFor of addressInformation.addressFors; let last = last">
+                            <a class="form-control-static" [routerLink]="['../address-for', addressFor?.id ]">{{addressFor.id}}</a>{{last ? '' : ', '}}
+                        </span>
                     </div>
                 </td>
                 <td>

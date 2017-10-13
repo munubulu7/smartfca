@@ -24,6 +24,14 @@
             "otherEntityName": "pincode",
             "relationshipType": "many-to-one",
             "otherEntityField": "id"
+        },
+        {
+            "relationshipName": "addressFor",
+            "otherEntityName": "addressFor",
+            "relationshipType": "many-to-many",
+            "otherEntityField": "id",
+            "ownerSide": true,
+            "otherEntityRelationshipName": "addrInfoFor"
         }
     ],
     "fields": [
@@ -33,8 +41,8 @@
         }
     ],
     "changelogDate": "20170913165024",
-    "entityTableName": "address_information",
     "dto": "no",
-    "pagination": "no",
-    "service": "no"
+    "service": "no",
+    "entityTableName": "address_information",
+    "pagination": "no"
 }

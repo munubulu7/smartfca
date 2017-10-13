@@ -85,7 +85,7 @@ public class AddressInformationResource {
     @Timed
     public List<AddressInformation> getAllAddressInformations() {
         log.debug("REST request to get all AddressInformations");
-        return addressInformationRepository.findAll();
+        return addressInformationRepository.findAllWithEagerRelationships();
     }
 
     /**
@@ -98,7 +98,7 @@ public class AddressInformationResource {
     @Timed
     public ResponseEntity<AddressInformation> getAddressInformation(@PathVariable Long id) {
         log.debug("REST request to get AddressInformation : {}", id);
-        AddressInformation addressInformation = addressInformationRepository.findOne(id);
+        AddressInformation addressInformation = addressInformationRepository.findOneWithEagerRelationships(id);
         return ResponseUtil.wrapOrNotFound(Optional.ofNullable(addressInformation));
     }
 

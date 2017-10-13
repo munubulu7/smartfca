@@ -5,6 +5,8 @@ import org.hibernate.annotations.CacheConcurrencyStrategy;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.util.HashSet;
+import java.util.Set;
 import java.util.Objects;
 
 /**
@@ -18,7 +20,7 @@ public class AddressInformation implements Serializable {
     private static final long serialVersionUID = 1L;
 
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     @Column(name = "landmark")
@@ -35,6 +37,13 @@ public class AddressInformation implements Serializable {
 
     @ManyToOne
     private Pincode pincode;
+
+    @ManyToMany
+    @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
+    @JoinTable(name = "address_information_address_for",
+               joinColumns = @JoinColumn(name="address_informations_id", referencedColumnName="id"),
+               inverseJoinColumns = @JoinColumn(name="address_fors_id", referencedColumnName="id"))
+    private Set<AddressFor> addressFors = new HashSet<>();
 
     public Long getId() {
         return id;
@@ -107,6 +116,19 @@ public class AddressInformation implements Serializable {
 
     public void setPincode(Pincode pincode) {
         this.pincode = pincode;
+    }
+
+    public Set<AddressFor> getAddressFors() {
+        return addressFors;
+    }
+
+    public AddressInformation addressFors(Set<AddressFor> addressFors) {
+        this.addressFors = addressFors;
+        return this;
+    }
+
+    public void setAddressFors(Set<AddressFor> addressFors) {
+        this.addressFors = addressFors;
     }
 
     @Override

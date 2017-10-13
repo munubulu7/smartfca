@@ -1,4 +1,5 @@
 import { BaseEntity } from './../../shared';
+import {AddressFor} from "../address-for/address-for.model";
 
 export class AddressInformation implements BaseEntity {
     constructor(
@@ -8,6 +9,7 @@ export class AddressInformation implements BaseEntity {
         public addressType?: BaseEntity,
         public addressFor?: BaseEntity,
         public pincode?: BaseEntity,
+        public addressFors?: AddressFor[],
     ) {
     }
 }
