@@ -139,6 +139,12 @@ public class CrmResource {
         return crmService.getAllTickets(startIndex, limit, ticketStatusId);
     }
 
+    @GetMapping("/RegistrationInformation/mobile")
+    @Timed
+    public RegistrationInformation getRegInfoByMobileNo(@RequestParam("mobileNo") String mobileNo) {
+        return crmService.getRegInfoByMobileNo(mobileNo);
+    }
+
     @GetMapping("/users")
     @Timed
     public List<User> getAllUsers() {

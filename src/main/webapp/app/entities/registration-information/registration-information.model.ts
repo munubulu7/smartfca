@@ -1,4 +1,5 @@
 import { BaseEntity } from './../../shared';
+import {RegistrationType} from "../registration-type/registration-type.model";
 
 export class RegistrationInformation implements BaseEntity {
     constructor(
@@ -13,7 +14,7 @@ export class RegistrationInformation implements BaseEntity {
         public addressInfos?: BaseEntity[],
         public tickets?: BaseEntity[],
         public centerLocation?: BaseEntity,
-        public registrationType?: BaseEntity,
+        public registrationType?: RegistrationType,
     ) {
     }
 }

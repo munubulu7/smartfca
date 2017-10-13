@@ -3,7 +3,7 @@
 <!-- For business Basic Information-->
 
 
-<div class="panel-group" [hidden]="isPersonal">
+<div class="panel-group" *ngIf="!isPersonal">
     <div class="panel panel-default">
         <div class="panel-heading">
             <h4 class="panel-title">
@@ -26,9 +26,10 @@
                         <div class="form-group">
                             <label class="cus-form-label">Organisation Type</label>
                             <div class="rel-position">
-                                <select class="form-control" [(ngModel)]="businessBasicInfo.organisationType.id">
+                                <select class="form-control" [(ngModel)]="businessBasicInfo.organisationType">
                                     <option *ngFor="let orgnisationType of organisationTypeList"
-                                            [ngValue]="orgnisationType.id">{{orgnisationType.name}}
+                                            [ngValue]="orgnisationType.id===businessBasicInfo.organisationType?.id?businessBasicInfo.organisationType:orgnisationType">
+                                        {{orgnisationType.name}}
                                     </option>
                                 </select>
                             </div>
@@ -94,7 +95,9 @@
                         <div class="form-group">
                             <label class="cus-form-label">Sector</label>
                             <select class="form-control" [(ngModel)]="businessBasicInfo.sector">
-                                <option *ngFor="let sector of sectorList" [ngValue]="sector">{{sector.name}}
+                                <option *ngFor="let sector of sectorList"
+                                        [ngValue]="sector.id===businessBasicInfo.sector?.id?businessBasicInfo.sector:sector">
+                                    {{sector.name}}
                                 </option>
                             </select>
                         </div>
@@ -104,7 +107,8 @@
                     <hr>
                     <div class="form-outer-str">
                         <div class="col-sm-3">
-                            <input class="btn btn-primary" type="button" value="Next" (click)="saveBasicInfo()">
+                            <input class="btn btn-primary" type="button" value="Save" (click)="saveBasicInfo()">
+                            <input class="btn btn-warning" type="button" value="Cancel">
                         </div>
                         <div class="col-sm-9"></div>
                     </div>
@@ -118,7 +122,7 @@
 <!-- For personal Basic Information-->
 
 
-<div class="panel-group" [hidden]="!isPersonal">
+<div class="panel-group" *ngIf="isPersonal">
 
     <div class="panel panel-default">
         <div class="panel-heading">
@@ -137,7 +141,8 @@
                             <div class="row clearfix">
                                 <div class="col-sm-3">
                                     <select class="form-control" [(ngModel)]="name.salutation">
-                                        <option *ngFor="let salutation of salutations" [ngValue]="salutation">
+                                        <option *ngFor="let salutation of salutations"
+                                                [ngValue]="salutation.id===name.salutation?.id?name.salutation:salutation">
                                             {{salutation.name}}
                                         </option>
                                     </select>
@@ -184,7 +189,7 @@
                             <label class="cus-form-label">Residential Status</label>
                             <select class="form-control" [(ngModel)]="personalBasicInfo.residentialStatus">
                                 <option *ngFor="let residentialStatus of residentialStatuses"
-                                        [ngValue]="residentialStatus">
+                                        [ngValue]="residentialStatus.id===personalBasicInfo.residentialStatus?.id?personalBasicInfo.residentialStatus:residentialStatus">
                                     {{residentialStatus.status}}
                                 </option>
                             </select>
@@ -195,7 +200,9 @@
                         <div class="form-group">
                             <label class="cus-form-label">Gender</label>
                             <select class="form-control" [(ngModel)]="personalBasicInfo.gender">
-                                <option *ngFor="let gender of genderList" [ngValue]="gender">{{gender.name}}
+                                <option *ngFor="let gender of genderList"
+                                        [ngValue]="gender.id===personalBasicInfo.gender?.id?personalBasicInfo.gender:gender">
+                                    {{gender.name}}
                                 </option>
                             </select>
                         </div>
@@ -208,7 +215,8 @@
                             <div class="row clearfix">
                                 <div class="col-sm-3">
                                     <select class="form-control" [(ngModel)]="father.salutation">
-                                        <option *ngFor="let salutation of salutations" [ngValue]="salutation">
+                                        <option *ngFor="let salutation of salutations"
+                                                [ngValue]="salutation.id===father.salutation?.id?father.salutation:salutation">
                                             {{salutation.name}}
                                         </option>
                                     </select>
@@ -236,7 +244,8 @@
                         <div class="form-group">
                             <label class="cus-form-label">Marital Status</label>
                             <select class="form-control" [(ngModel)]="personalBasicInfo.maritalStatus">
-                                <option *ngFor="let maritalStatus of maritalStatuses" [ngValue]="maritalStatus">
+                                <option *ngFor="let maritalStatus of maritalStatuses"
+                                        [ngValue]="maritalStatus.id===personalBasicInfo.maritalStatus?.id?personalBasicInfo.maritalStatus:maritalStatus">
                                     {{maritalStatus.status}}
                                 </option>
                             </select>
@@ -272,7 +281,8 @@
                             <div class="row clearfix">
                                 <div class="col-sm-3">
                                     <select class="form-control" [(ngModel)]="mother.salutation">
-                                        <option *ngFor="let salutation of salutations" [ngValue]="salutation">
+                                        <option *ngFor="let salutation of salutations"
+                                                [ngValue]="salutation.id===mother.salutation?.id?mother.salutation:salutation">
                                             {{salutation.name}}
                                         </option>
                                     </select>
@@ -306,7 +316,8 @@
                             <div class="">
                                 <select class="form-control" [(ngModel)]="personalBasicInfo.occupation"
                                         (change)="populateEmployers()">
-                                    <option *ngFor="let occupation of occupationList" [ngValue]="occupation">
+                                    <option *ngFor="let occupation of occupationList"
+                                            [ngValue]="occupation.id===personalBasicInfo.occupation?.id?personalBasicInfo.occupation:occupation">
                                         {{occupation.occupation}}
                                     </option>
                                 </select>
@@ -318,7 +329,8 @@
                             <label class="cus-form-label">Employed With </label>
                             <div>
                                 <select class="form-control" [(ngModel)]="personalBasicInfo.employers">
-                                    <option *ngFor="let employers of employersList" [ngValue]="employers">
+                                    <option *ngFor="let employers of employersList"
+                                            [ngValue]="employers.id===personalBasicInfo.employers?.id?personalBasicInfo.employers:employers">
                                         {{employers.name}}
                                     </option>
                                 </select>
@@ -343,7 +355,9 @@
                         <div class="form-group">
                             <label class="cus-form-label">Sector</label>
                             <select class="form-control" [(ngModel)]="personalBasicInfo.sector">
-                                <option *ngFor="let sector of sectorList" [ngValue]="sector">{{sector.name}}
+                                <option *ngFor="let sector of sectorList"
+                                        [ngValue]="sector.id===personalBasicInfo.sector?.id?personalBasicInfo.sector:sector">
+                                    {{sector.name}}
                                 </option>
                             </select>
                         </div>

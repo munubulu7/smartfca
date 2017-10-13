@@ -175,6 +175,10 @@ export class CrmNewAddressComponent implements OnInit, OnDestroy {
         });
     }
 
+    back(){
+        window.history.back();
+    }
+
     private onError(error) {
         this.alertService.error(error.message, null, null);
     }

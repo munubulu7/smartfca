@@ -27,7 +27,14 @@
             <li *jhiHasAnyAuthority="'ROLE_USER'" class="nav-item" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
                 <a class="nav-link" routerLink="/tickets" (click)="collapseNavbar()">
                     <i class="fa fa-ticket" aria-hidden="true"></i>
-                    <span>Create Ticket</span>
+                    <span>Tickets</span>
+                </a>
+            </li>
+
+            <li *jhiHasAnyAuthority="'ROLE_ADMIN'" class="nav-item" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
+                <a class="nav-link" routerLink="/register" (click)="collapseNavbar()">
+                    <i class="fa fa-user-plus" aria-hidden="true"></i>
+                    <span>Register new user</span>
                 </a>
             </li>
 

@@ -24,6 +24,8 @@ import {MaritalStatusService} from "../marital-status/marital-status.service";
 import {OccupationService} from "../occupation/occupation.service";
 import {AddressType} from "../address-type/address-type.model";
 import {AddressTypeService} from "../address-type/address-type.service";
+import {RegistrationInformationService} from "../registration-information/registration-information.service";
+import {RegistrationInformation} from "../registration-information/registration-information.model";
 
 @Component({
     selector: 'crm-basic-info',
@@ -38,8 +40,8 @@ export class CrmBasicInformationComponent implements OnInit, OnDestroy {
 
     routeSub: any;
     basicInformation: BasicInformation[] = [];
-    personalBasicInfo: BasicInformation;
-    businessBasicInfo: BasicInformation;
+    personalBasicInfo: BasicInformation = new BasicInformation;
+    businessBasicInfo: BasicInformation = new BasicInformation;
     organisationTypeList: OrganisationType[];
     salutations: Salutation[];
     sectorList: Sector[];
@@ -56,7 +58,6 @@ export class CrmBasicInformationComponent implements OnInit, OnDestroy {
     isPersonal: boolean = false;
 
 
-
     constructor(private alertService: JhiAlertService,
                 private route: ActivatedRoute,
                 private genderService: GenderService,
@@ -67,14 +68,19 @@ export class CrmBasicInformationComponent implements OnInit, OnDestroy {
                 private residentialStatusService: ResidentialStatusService,
                 private sectorService: SectorService,
                 private salutationService: SalutationService,
+                private registrationInformationService: RegistrationInformationService,
                 private crmService: CrmService) {
     }
 
-    reset(){
+    reset() {
         this.father = new Person();
         this.mother = new Person();
         this.name = new Person();
+
+        this.personalBasicInfo = new BasicInformation();
+        this.businessBasicInfo = new BasicInformation();
     }
+
     ngOnInit(): void {
         this.reset();
         this.organisationTypeService.query().subscribe(
@@ -131,21 +137,32 @@ export class CrmBasicInformationComponent implements OnInit, OnDestroy {
             this.crmService.getBasicinformationByRegistration(param['regId']).subscribe(
                 (res: ResponseWrapper) => {
                     this.basicInformation = res.json;
-                    this.businessBasicInfo = this.basicInformation[0];
-                    this.personalBasicInfo = this.basicInformation[0];
-                    this.crmService.getContactPersonByBasicInformationId(this.businessBasicInfo.id).subscribe(
-                        (contRes: ResponseWrapper)=>{
-                            contRes.json.map((item)=>{
-                                let sampleContactPerson = new CrmContactPerson();
-                                sampleContactPerson.persons = item.persons;
-                                sampleContactPerson.designation = item.designation;
-                                sampleContactPerson.contactInfoList = [];
-                                sampleContactPerson.contactInfoList.push(new ContactInfo());
-                                this.contactPersonFromGroup.push(sampleContactPerson);
-                                debugger;
-                            });
+                    this.registrationInformationService.find(param['regId']).subscribe((regInfo: ResponseWrapper) => {
+                            let tempRegInfo: RegistrationInformation = regInfo;
+                            if (tempRegInfo.registrationType.type == 'Personal') {
+                                this.isPersonal = true;
+                                if(this.basicInformation.length>0){
+                                    this.personalBasicInfo = this.basicInformation[0];
+                                }
+                            } else {
+                                this.isPersonal = false;
+                                this.businessBasicInfo = this.basicInformation[0];
+                                this.crmService.getContactPersonByBasicInformationId(this.businessBasicInfo.id).subscribe(
+                                    (contRes: ResponseWrapper) => {
+                                        contRes.json.map((item) => {
+                                            let sampleContactPerson = new CrmContactPerson();
+                                            sampleContactPerson.persons = item.persons;
+                                            sampleContactPerson.designation = item.designation;
+                                            sampleContactPerson.contactInfoList = [];
+                                            sampleContactPerson.contactInfoList.push(new ContactInfo());
+                                            this.contactPersonFromGroup.push(sampleContactPerson);
+                                        });
+                                    },
+                                    (contRes: ResponseWrapper) => this.onError(contRes.json)
+                                );
+                            }
                         },
-                        (contRes: ResponseWrapper) => this.onError(contRes.json)
+                        (regInfoErr: ResponseWrapper) => this.onError(regInfoErr.json)
                     );
                 },
                 (res: ResponseWrapper) => this.onError(res.json)
@@ -183,7 +200,7 @@ export class CrmBasicInformationComponent implements OnInit, OnDestroy {
     }
 
     ngOnDestroy(): void {
-        throw new Error("Method not implemented.");
+        //throw new Error("Method not implemented.");
     }
 
 }

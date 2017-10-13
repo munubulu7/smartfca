@@ -11,7 +11,9 @@
             <div class="row clearfix">
                 <div class="col-sm-3">
                     <select class="form-control" [(ngModel)]="contactPerson.persons.salutation">
-                        <option *ngFor="let salutation of salutationList" [ngValue]="salutation">{{salutation.name}}
+                        <option *ngFor="let salutation of salutationList"
+                                [ngValue]="salutation.id===contactPerson.persons.salutation?.id?contactPerson.persons.salutation:salutation">
+                            {{salutation.name}}
                         </option>
                     </select>
                 </div>
@@ -38,7 +40,9 @@
         <div class="form-group">
             <label class="cus-form-label">Designation</label>
             <select class="form-control" [(ngModel)]="contactPerson.designation">
-                <option *ngFor="let designation of designationList" [ngValue]="designation">{{designation.name}}
+                <option *ngFor="let designation of designationList"
+                        [ngValue]="designation.id===contactPerson.designation?.id?contactPerson.designation:designation">
+                    {{designation.name}}
                 </option>
             </select>
         </div>
@@ -49,13 +53,15 @@
             <div class="clearfix">
                 <div class="col-sm-5 pad-lft-none">
                     <select class="form-control" [(ngModel)]="contactPerson.contactInfoList[0].contactType">
-                        <option *ngFor="let contactType of contactTypeList" [ngValue]="contactType">
+                        <option *ngFor="let contactType of contactTypeList"
+                                [ngValue]="contactType.id===contactPerson.contactInfoList[0].contactType?.id?contactPerson.contactInfoList[0].contactType:contactType">
                             {{contactType.type}}
                         </option>
                     </select>
                 </div>
                 <div class="col-sm-7 pad-lft-none">
-                    <input class="form-control" type="text" [(ngModel)]="contactPerson.contactInfoList[0].contactDetails">
+                    <input class="form-control" type="text"
+                           [(ngModel)]="contactPerson.contactInfoList[0].contactDetails">
                     <span class="add-icon"><a (click)="addContactInfo()"><i class="fa fa-plus-circle"
                                                                             aria-hidden="true"></i></a></span>
 
@@ -69,14 +75,16 @@
             <div class="clearfix">
                 <div class="col-sm-5 pad-lft-none">
                     <select class="form-control" [(ngModel)]="contactInfo.contactType">
-                        <option *ngFor="let contactType of contactTypeList" [ngValue]="contactType">
+                        <option *ngFor="let contactType of contactTypeList"
+                                [ngValue]="contactType.id===contactInfo.contactType?.id?contactInfo.contactType:contactType">
                             {{contactType.type}}
                         </option>
                     </select>
                 </div>
                 <div class="col-sm-7 pad-lft-none">
                     <input class="form-control" [(ngModel)]="contactInfo.contactDetails">
-                    <span class="add-icon"><a (click)="deleteContactInfo(j+1)"><i class="fa fa-plus-circle"></i></a></span>
+                    <span class="add-icon"><a (click)="deleteContactInfo(j+1)"><i
+                        class="fa fa-plus-circle"></i></a></span>
                 </div>
             </div>
         </div>
