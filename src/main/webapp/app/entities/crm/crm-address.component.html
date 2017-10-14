@@ -35,13 +35,13 @@
                 </td>
                 <td>
                     <div *ngIf="addressInformation.addressType">
-                        <a [routerLink]="['../address-type', addressInformation.addressType?.id ]">{{addressInformation.addressType?.id}}</a>
+                        <a [routerLink]="['../address-type', addressInformation.addressType?.id ]">{{addressInformation.addressType?.type}}</a>
                     </div>
                 </td>
                 <td>
-                    <div *ngIf="addressInformation.addressFor">
+                    <div *ngIf="addressInformation.addressFors">
                         <span *ngFor="let addressFor of addressInformation.addressFors; let last = last">
-                            <a class="form-control-static" [routerLink]="['../address-for', addressFor?.id ]">{{addressFor.id}}</a>{{last ? '' : ', '}}
+                            <a class="form-control-static" [routerLink]="['../address-for', addressFor?.id ]">{{addressFor.name}}</a>{{last ? '' : ', '}}
                         </span>
                     </div>
                 </td>

@@ -74,7 +74,8 @@ public class CrmService {
     }
 
     public List<AddressInformation> getAllAddressesByRegInfoId(long regId) {
-        TypedQuery<AddressInformation> q = em.createQuery("select c from AddressInformation c where c.registrationInformation.id=:regId", AddressInformation.class);
+//        TypedQuery<AddressInformation> q = em.createQuery("select c from AddressInformation c where c.registrationInformation.id=:regId", AddressInformation.class);
+        TypedQuery<AddressInformation> q = em.createQuery("select distinct address_information from AddressInformation address_information left join fetch address_information.addressFors where address_information.registrationInformation.id =:regId", AddressInformation.class);
         q.setParameter("regId", regId);
         return q.getResultList();
     }
@@ -122,7 +123,7 @@ public class CrmService {
         return q.getResultList();
     }
 
-    public List<User> getAllUser(){
+    public List<User> getAllUser() {
         TypedQuery<User> q = em.createQuery("select c from User c", User.class);
         return q.getResultList();
     }

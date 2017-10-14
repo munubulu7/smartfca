@@ -18,7 +18,8 @@
                             <div class="form-group">
                                 <label class="cus-form-label">Address Type </label>
                                 <select class="form-control" [(ngModel)]="addressInfo.addressType">
-                                    <option *ngFor="let addressType of addressTypeList" [ngValue]="addressType">
+                                    <option *ngFor="let addressType of addressTypeList"
+                                            [ngValue]="addressType.id===addressInfo.addressType?.id?addressInfo.addressType:addressType">
                                         {{addressType.type}}
                                     </option>
                                 </select>
@@ -162,14 +163,17 @@
                             </div>
                         </div>
 
-                            <div class="col-sm-3">
-                                <div class="form-group">
-                                    <label for="field_addressFor">Address For</label>
-                                    <select class="form-control" id="field_addressFor" multiple name="addressFor" [(ngModel)]="addressInfo.addressFors">
-                                        <option [ngValue]="getSelected(addressInfo.addressFors, addressForOption)" *ngFor="let addressForOption of addressForList">{{addressForOption.name}}</option>
-                                    </select>
-                                </div>
+                        <div class="col-sm-3">
+                            <div class="form-group">
+                                <label for="field_addressFor">Address For</label>
+                                <select class="form-control" id="field_addressFor" multiple name="addressFor"
+                                        [(ngModel)]="addressInfo.addressFors">
+                                    <option [ngValue]="getSelected(addressInfo.addressFors, addressForOption)"
+                                            *ngFor="let addressForOption of addressForList">{{addressForOption.name}}
+                                    </option>
+                                </select>
                             </div>
+                        </div>
 
                         <div class="clearfix"></div>
                         <div class="col-sm-12">
