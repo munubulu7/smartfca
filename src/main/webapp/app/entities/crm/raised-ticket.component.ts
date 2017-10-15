@@ -10,6 +10,16 @@ import {TicketService} from "../ticket/ticket.service";
 import {CrmService} from "./crm.service";
 import {Principal} from "../../shared/auth/principal.service";
 import {User} from "../../shared/user/user.model";
+import {Observable} from "rxjs/Observable";
+
+const states = ['Alabama', 'Alaska', 'American Samoa', 'Arizona', 'Arkansas', 'California', 'Colorado',
+    'Connecticut', 'Delaware', 'District Of Columbia', 'Federated States Of Micronesia', 'Florida', 'Georgia',
+    'Guam', 'Hawaii', 'Idaho', 'Illinois', 'Indiana', 'Iowa', 'Kansas', 'Kentucky', 'Louisiana', 'Maine',
+    'Marshall Islands', 'Maryland', 'Massachusetts', 'Michigan', 'Minnesota', 'Mississippi', 'Missouri', 'Montana',
+    'Nebraska', 'Nevada', 'New Hampshire', 'New Jersey', 'New Mexico', 'New York', 'North Carolina', 'North Dakota',
+    'Northern Mariana Islands', 'Ohio', 'Oklahoma', 'Oregon', 'Palau', 'Pennsylvania', 'Puerto Rico', 'Rhode Island',
+    'South Carolina', 'South Dakota', 'Tennessee', 'Texas', 'Utah', 'Vermont', 'Virgin Islands', 'Virginia',
+    'Washington', 'West Virginia', 'Wisconsin', 'Wyoming'];
 
 @Component({
     selector: 'new-ticket',
@@ -27,6 +37,8 @@ export class RaisedTicketComponent implements OnInit {
     userList: Account[];
     account: Account;
 
+    formatter = (x: {mobileNumber: string}) => x.mobileNumber;
+
     constructor(private alertService: JhiAlertService,
                 private eventManager: JhiEventManager,
                 private crmService: CrmService,
@@ -35,6 +47,13 @@ export class RaisedTicketComponent implements OnInit {
                 private ticketStatusService: TicketStatusService,
                 private principal: Principal) {
     }
+
+
+    search = (text$: Observable<string>) =>
+        text$
+            .debounceTime(200)
+            .map(term => term === '' ? []
+                : this.registrationInformationList.filter(v => v.mobileNumber.toLowerCase().indexOf(term.toLowerCase()) > -1).slice(0, 10));
 
     private reset(): void {
         this.ticket = new Ticket();
@@ -64,7 +83,7 @@ export class RaisedTicketComponent implements OnInit {
         );
         this.crmService.getAllUSers().subscribe(
             (res: ResponseWrapper) => {
-                this.userList=res.json;
+                this.userList = res.json;
             },
             (res: ResponseWrapper) => {
                 (res: ResponseWrapper) => this.onError(res.json);

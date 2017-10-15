@@ -139,9 +139,9 @@ public class CrmResource {
         return crmService.getAllTickets(startIndex, limit, ticketStatusId);
     }
 
-    @GetMapping("/RegistrationInformation/mobile")
+    @GetMapping("/registration-information/mobile")
     @Timed
-    public RegistrationInformation getRegInfoByMobileNo(@RequestParam("mobileNo") String mobileNo) {
+    public List<RegistrationInformation> getRegInfoByMobileNo(@RequestParam("mobileNo") String mobileNo) {
         return crmService.getRegInfoByMobileNo(mobileNo);
     }
 

@@ -80,10 +80,10 @@ public class CrmService {
         return q.getResultList();
     }
 
-    public RegistrationInformation getRegInfoByMobileNo(String mobile) {
-        TypedQuery<RegistrationInformation> q = em.createQuery("select c from RegistrationInformation c where c.mobileNumber=:mobile", RegistrationInformation.class);
-        q.setParameter("mobile", mobile);
-        return q.getSingleResult();
+    public List<RegistrationInformation> getRegInfoByMobileNo(String mobile) {
+        TypedQuery<RegistrationInformation> q = em.createQuery("select c from RegistrationInformation c where c.mobileNumber like :mobile", RegistrationInformation.class);
+        q.setParameter("mobile", "%"+mobile+"%");
+        return q.getResultList();
     }
 
     public ConfigParameter getConfigParam(String name) {

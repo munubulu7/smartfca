@@ -72,13 +72,14 @@ export class CrmService {
             .map((res: Response) => this.convertResponse(res));
     }
 
-    public getRegInfoByMobileNo(mobile: String): Observable<ResponseWrapper> {
-        return this.http.get(`${this.resourceUrl}RegistrationInformation/mobile`, {
+    public getRegInfoByMobileNo(mobile: String): Observable<string[]> {
+        return this.http.get(`${this.resourceUrl}registration-information/mobile`, {
             params: {
                 'mobileNo': mobile
             }
         })
-            .map((res: Response) => this.convertResponse(res));
+            // .map((res: Response) => <RegistrationInformation> this.convertResponse(res));
+        .map((res: Response) =>  <string[]>res.json()[1]);
     }
 
     public getAllTickets(start: string, limit: string, ticketStatusId: String): Observable<ResponseWrapper> {

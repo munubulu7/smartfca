@@ -12,17 +12,28 @@
             <div class="panel-body custom-form-bx">
                 <div class="col-sm-3">
                     <div class="form-group">
-                        <label class="cus-form-label">Select Registration Id<span
-                            class="mandatory-field">*</span></label>
-                        <select class="form-control" id="ticket_registrationInformation" name="registrationInformation"
-                                [(ngModel)]="ticket.registrationInformation">
-                            <option [ngValue]="registrationInformation"
-                                    *ngFor="let registrationInformation of registrationInformationList">
-                                {{registrationInformation.id}}
-                            </option>
-                        </select>
+                        <ng-template #rt let-r="result" let-t="term">
+                            {{ r.mobileNumber}}
+                        </ng-template>
+
+                        <label for="typeahead-template">Search for a state:</label>
+                        <input id="typeahead-template" type="text" class="form-control" [(ngModel)]="ticket.registrationInformation" [ngbTypeahead]="search" [resultTemplate]="rt"
+                               [inputFormatter]="formatter" name="reg-info"/>
                     </div>
                 </div>
+                <!--<div class="col-sm-3">-->
+                    <!--<div class="form-group">-->
+                        <!--<label class="cus-form-label">Select Registration Id<span-->
+                            <!--class="mandatory-field">*</span></label>-->
+                        <!--<select class="form-control" id="ticket_registrationInformation" name="registrationInformation"-->
+                                <!--[(ngModel)]="ticket.registrationInformation">-->
+                            <!--<option [ngValue]="registrationInformation"-->
+                                    <!--*ngFor="let registrationInformation of registrationInformationList">-->
+                                <!--{{registrationInformation.id}}-->
+                            <!--</option>-->
+                        <!--</select>-->
+                    <!--</div>-->
+                <!--</div>-->
                 <div class="col-sm-3">
                     <label class="form-control-label" for="field_title">Ticket Number</label>
                     <input type="text" class="form-control" name="ticketNo" id="ticket-number"
